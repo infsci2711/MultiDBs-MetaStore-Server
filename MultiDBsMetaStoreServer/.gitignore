@@ -1,4 +1,10 @@
 /target
+<<<<<<< HEAD
 /.settings
 /.project
 /.classpath
+=======
+.classpath
+.project
+.setings
+>>>>>>> FETCH_HEAD
