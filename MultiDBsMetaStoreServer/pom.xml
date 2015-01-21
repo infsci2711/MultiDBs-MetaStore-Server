@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>multidbsmetastoreserver</artifactId>
+	<packaging>jar</packaging>
+	<name>MultiDBsMetaStoreServer</name>
+
+	<parent>
+		<groupId>edu.pitt.sis.infsci2711</groupId>
+		<artifactId>multidbsmetastoreserver-main</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<!-- ${project.parent.basedir} didn't work -->
+		<main.basedir>${project.basedir}/..</main.basedir>
+	</properties>
+
+	<dependencies>
+
+	</dependencies>
+</project>
