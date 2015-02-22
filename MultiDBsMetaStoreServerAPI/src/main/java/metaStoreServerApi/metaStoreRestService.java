@@ -83,7 +83,8 @@ public class metaStoreRestService {
 	}
 
 	private metaStoreDBModel convertViewModelToDB(final metaStore metaStore) {
-		return new metaStoreDBModel(metaStore.getFirstName(), metaStore.getLastName());
+		return new metaStoreDBModel(metaStore.getDBtype(), metaStore.getIPAddress(), 
+				metaStore.getPort(),metaStore.getUsername(),metaStore.getPassword(),metaStore.getDBname());
 	}
 
 	private List<metaStore> convertDbToViewModel(final List<metaStoreDBModel> metaStoresDB) {
@@ -96,6 +97,6 @@ public class metaStoreRestService {
 	}
 	
 	private metaStore convertDbToViewModel(final metaStoreDBModel metaStoreDB) {
-		return new metaStore(metaStoreDB.getId(), metaStoreDB.getFirstName(), metaStoreDB.getLastName());
+		return new metaStore(metaStoreDB.getId(), metaStoreDB.getDBtype(), metaStoreDB.getIPAddress(), metaStoreDB.getPort(),metaStoreDB.getUsername(),metaStoreDB.getPassword(),metaStoreDB.getDBname());
 	}
 }
