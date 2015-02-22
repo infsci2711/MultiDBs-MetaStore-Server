@@ -1,6 +1,6 @@
 package metaStoreServer;
 
-public class jdbcUtil{
+
 	import java.sql.Connection;
 	import java.sql.DriverManager;
 
@@ -25,4 +25,4 @@ public class jdbcUtil{
 			return String.format("jdbc:mysql://%s:%d/%s", DEFAULT_HOST, DEFAULT_PORT, DEFAULT_DATABASE);
 		}
 	}
-}
+
