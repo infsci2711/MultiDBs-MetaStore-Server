@@ -13,7 +13,7 @@ package metaStoreServer;
 		
 		public static final String DEFAULT_PASSWOD = "hao"; // CHANGE TO YOUR MYSQL PASSWORD
 		
-		public static final String DEFAULT_DATABASE = "metaStore";
+		public static final String DEFAULT_DATABASE = "group1";
 		
 		public static Connection getConnection() throws Exception {
 			Class.forName("com.mysql.jdbc.Driver");

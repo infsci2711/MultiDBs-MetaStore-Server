@@ -34,7 +34,7 @@ public static List<metaStoreDBModel> findAll() throws SQLException, Exception {
 	public static metaStoreDBModel findById(final int id) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = "SELECT * FROM metaStore where id = " + id;
+			String sql = "SELECT * FROM metaStore where ID = " + id;
 			try (Statement statement = connection.createStatement()){
 				
 				ResultSet resultSet = statement.executeQuery(sql);
@@ -52,7 +52,7 @@ public static List<metaStoreDBModel> findAll() throws SQLException, Exception {
 	public static int save(final metaStoreDBModel metaStore) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = String.format("INSERT INTO metaStore (`DBtype`, `IPAddress`, `port`, `username`, `password`, `DBname) VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", metaStore.getDBtype(), metaStore.getIPAddress(), 
+			String sql = String.format("INSERT INTO metaStore (DBtype, IPAddress, port, username, password, DBname) VALUES ('%s', '%s', '%d', '%s', '%s', '%s')", metaStore.getDBtype(), metaStore.getIPAddress(), 
 					metaStore.getPort(),metaStore.getUsername(),metaStore.getPassword(),metaStore.getDBname());
 			try (Statement statement = connection.createStatement()){
 				

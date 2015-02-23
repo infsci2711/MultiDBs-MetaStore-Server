@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import metaStoreServer.metaStoreService;
 import metaStoreServer.metaStoreDBModel;
 import metaStoreServerApi.metaStore;
-
+@Path("metaStore/")
 public class metaStoreRestService {
 
 	@GET
