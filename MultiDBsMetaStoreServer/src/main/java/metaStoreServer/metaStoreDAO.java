@@ -69,6 +69,25 @@ public class metaStoreDAO {
 		
 	}
 	
+	public static List<String> findDB( final String DBname ) throws SQLException, Exception{
+		
+		try (Connection connection = JdbcUtil.getConnection()) {
+			String sql = String.format("SELECT databases");
+			try (Statement statement = connection.createStatement()){
+				ResultSet resultSet = statement.executeQuery(sql);
+				
+				List<String> result = new ArrayList<String>();
+				
+				while (resultSet.next()) {
+					result.add(resultSet.getString(1));
+				}
+				
+				return result;
+			
+			}
+		}
+	}
+	
 	public static List<String> findTables( final String DBname ) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
