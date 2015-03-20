@@ -34,7 +34,7 @@ public static List<metaStoreDBModel> findAll() throws SQLException, Exception {
 	public static metaStoreDBModel findById(final int id) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = "SELECT * FROM metaStore where ID = " + id;
+			String sql = "SELECT * FROM metaStore where id = " + id;
 			try (Statement statement = connection.createStatement()){
 				
 				ResultSet resultSet = statement.executeQuery(sql);
