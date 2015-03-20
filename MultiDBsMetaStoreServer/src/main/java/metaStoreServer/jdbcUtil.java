@@ -5,11 +5,11 @@ package metaStoreServer;
 	import java.sql.DriverManager;
 
 	public class JdbcUtil {
-		public static final String DEFAULT_HOST = "54.152.26.131";
+		public static final String DEFAULT_HOST = "localhost";
 		
 		public static final int DEFAULT_PORT = 3306;
 		
-		public static final String DEFAULT_USER = "root"; //CHANGE TO YOUR MYSQL USER NAME
+		public static final String DEFAULT_USER = "hao"; //CHANGE TO YOUR MYSQL USER NAME
 		
 		public static final String DEFAULT_PASSWOD = "hao"; // CHANGE TO YOUR MYSQL PASSWORD
 		
