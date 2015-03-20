@@ -3,7 +3,7 @@ package metaStoreServer;
 
 	import java.sql.Connection;
 	import java.sql.DriverManager;
-
+//capital J!
 	public class JdbcUtil {
 		public static final String DEFAULT_HOST = "54.152.26.131";
 		
