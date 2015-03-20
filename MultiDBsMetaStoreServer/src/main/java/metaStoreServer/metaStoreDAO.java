@@ -72,7 +72,7 @@ public class metaStoreDAO {
 	public static List<String> findDB( final String DBname ) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = String.format("SELECT databases");
+			String sql = String.format("show databases");
 			try (Statement statement = connection.createStatement()){
 				ResultSet resultSet = statement.executeQuery(sql);
 				
@@ -91,7 +91,7 @@ public class metaStoreDAO {
 	public static List<String> findTables( final String DBname ) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = String.format("SELECT tables from "+DBname);
+			String sql = String.format("show tables from "+DBname);
 			try (Statement statement = connection.createStatement()){
 				ResultSet resultSet = statement.executeQuery(sql);
 				
@@ -110,7 +110,7 @@ public class metaStoreDAO {
 	public static metaStoreTBModel findSchema( final String TBname ) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = String.format("SELECT columns from "+TBname);
+			String sql = String.format("show columns from "+TBname);
 			try (Statement statement = connection.createStatement()){
 				
 ResultSet resultSet = statement.executeQuery(sql);
