@@ -26,14 +26,21 @@ public class metaStoreService {
 		return metaStore;
 	}
 	
+	public List<String> findDB(final String DBname) throws SQLException, Exception {
+		List<String> result = metaStoreDBDAO.findDB(DBname);
+		
+		return result;
+	}
+	
+	
 	public List<String> findTables(final String DBname) throws SQLException, Exception {
-		List<String> result = metaStoreDAO.findTables(DBname);
+		List<String> result = metaStoreTableDAO.findTables(DBname);
 		
 		return result;
 	}
 	
 	public metaStoreTBModel findSchema(final String TBname) throws SQLException, Exception {
-		metaStoreTBModel result = metaStoreDAO.findSchema(TBname);
+		metaStoreTBModel result = metaStoreSchemaDAO.findSchema(TBname);
 		
 		return result;
 	}
