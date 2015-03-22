@@ -13,6 +13,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import metaStoreServer.metaStoreDatabaseModel;
 import metaStoreServer.metaStoreSchemaModel;
 import metaStoreServer.metaStoreService;
 import metaStoreServer.metaStoreDBModel;
@@ -75,8 +76,10 @@ public Response Tables_Schema(String TBname) {
 	metaStoreSchemaModel table_schema;
 	try {
 		table_schema = metaStoreService.findSchema(TBname);
+		
+		Table_Schema schema=convertSchemaToViewModel(table_schema);
 	
-		GenericEntity<metaStoreSchemaModel> entity = new GenericEntity<metaStoreSchemaModel>(table_schema) {};
+		GenericEntity<Table_Schema> entity = new GenericEntity<Table_Schema>(schema) {};
 		
 		return Response.status(200).entity(entity).build();
 	} catch (Exception e) {
@@ -85,6 +88,28 @@ public Response Tables_Schema(String TBname) {
 	}
 	
 }
+
+
+//Data base...
+public Response Data_Base() {
+	
+	metaStoreService metaStoreService = new metaStoreService();
+	
+	List<metaStoreDatabaseModel> data_base;
+	try {
+		data_base = metaStoreService.findDB();
+		List<DataBase> bases = convertDatabaseToViewModel(data_base);
+	
+		GenericEntity<List<DataBase>> entity = new GenericEntity<List<DataBase>>(bases) {};
+		
+		return Response.status(200).entity(entity).build();
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+		return Response.status(500).build();
+	}
+	
+}
+
 
 
 	
@@ -166,6 +191,23 @@ public Response Tables_Schema(String TBname) {
 		return new DB_Table(metaStoreTB.getTable());
 	}
 	
-
+  ////data base..
+	private List<DataBase> convertDatabaseToViewModel(final List<metaStoreDatabaseModel> Data_Bases) {
+		List<DataBase> result = new ArrayList<DataBase>();
+		for(metaStoreDatabaseModel Data_Base : Data_Bases) {
+			result.add(convertDatabaseToViewModel(Data_Base));
+		}
+		
+		return result;
+	}
+	
+	private DataBase convertDatabaseToViewModel(final metaStoreDatabaseModel Data_Base) {
+		return new DataBase(Data_Base.getDatabase());
+	}
+	
+	//schema
+	private Table_Schema convertSchemaToViewModel(final metaStoreSchemaModel Schema) {
+		return new Table_Schema(Schema.getId(),Schema.getTBfield(),Schema.getTBtype(),Schema.getTBnull(),Schema.getTBkey(),Schema.getTBdefault(),Schema.getTBextra());
+	}
 	
 }
