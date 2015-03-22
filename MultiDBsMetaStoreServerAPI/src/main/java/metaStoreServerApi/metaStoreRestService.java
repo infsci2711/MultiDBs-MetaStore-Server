@@ -44,9 +44,11 @@ public class metaStoreRestService {
 		
 	}
 	
-	
+	@Path("{DBname}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	//DB_Table...
-public Response allDB_Tables(String DBname) {
+public Response allDB_Tables(@PathParam("DBname")String DBname) {
 		
 		metaStoreService metaStoreService = new metaStoreService();
 		
@@ -67,9 +69,11 @@ public Response allDB_Tables(String DBname) {
 	}
 
 
-
+@Path("{TBname}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
 //DB_Table_Schema...
-public Response Tables_Schema(String TBname) {
+public Response Tables_Schema(@PathParam("TBname") String TBname) {
 	
 	metaStoreService metaStoreService = new metaStoreService();
 	
