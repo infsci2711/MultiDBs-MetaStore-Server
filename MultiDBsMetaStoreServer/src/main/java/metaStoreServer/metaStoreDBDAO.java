@@ -8,16 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class metaStoreDBDAO {
-	
-public static List<String> findDB( final String DBname ) throws SQLException, Exception{
+		public static List<String> findDB( final String DBname ) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
 			String sql = String.format("show databases");
 			try (Statement statement = connection.createStatement()){
 				ResultSet resultSet = statement.executeQuery(sql);
 				
-				List<String> result = new ArrayList<String>();
-				
+				 List<String> result = new ArrayList<String>();
+				//re
 				while (resultSet.next()) {
 					result.add(resultSet.getString(1));
 				}
