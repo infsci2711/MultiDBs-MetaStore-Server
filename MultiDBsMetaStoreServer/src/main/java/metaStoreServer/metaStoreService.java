@@ -26,9 +26,8 @@ public class metaStoreService {
 		return metaStore;
 	}
 	
-	public List<String> findDB(final String DBname) throws SQLException, Exception {
-		List<String> result = metaStoreDBDAO.findDB(DBname);
-		
+	public List<metaStoreDatabaseModel> findDB() throws SQLException, Exception {
+		List<metaStoreDatabaseModel> result = metaStoreDBDAO.findDB();
 		return result;
 	}
 	
