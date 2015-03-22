@@ -39,8 +39,8 @@ public class metaStoreService {
 		return result;
 	}
 	
-	public metaStoreTBModel findSchema(final String TBname) throws SQLException, Exception {
-		metaStoreTBModel result = metaStoreSchemaDAO.findSchema(TBname);
+	public metaStoreSchemaModel findSchema(final String TBname) throws SQLException, Exception {
+		metaStoreSchemaModel result = metaStoreSchemaDAO.findSchema(TBname);
 		
 		return result;
 	}

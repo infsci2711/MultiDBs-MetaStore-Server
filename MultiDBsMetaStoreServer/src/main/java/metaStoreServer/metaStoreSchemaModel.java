@@ -1,6 +1,6 @@
 package metaStoreServer;
 
-public class metaStoreTBModel {
+public class metaStoreSchemaModel {
 	private int id;
 	private String TBfield;
 	private String TBtype;
@@ -9,11 +9,11 @@ public class metaStoreTBModel {
 	private String TBdefault;
 	private String TBextra;
 	
-	public metaStoreTBModel(){
+	public metaStoreSchemaModel(){
 		
 	}
 	
-	public metaStoreTBModel(final String TBfield, final String TBtype, final String TBnull,
+	public metaStoreSchemaModel(final String TBfield, final String TBtype, final String TBnull,
 			final String key, final String TBdefault, final String TBextra){
 		this.setTBfield(TBfield);
 		this.setTBtype(TBtype);
@@ -24,7 +24,7 @@ public class metaStoreTBModel {
 	}
 
 	
-	public metaStoreTBModel(final int id, final String TBfield, final String TBtype, final String TBnull,
+	public metaStoreSchemaModel(final int id, final String TBfield, final String TBtype, final String TBnull,
 			final String key, final String TBdefault, final String TBextra){		
 		this.setId(id);
 		this.setTBfield(TBfield);
