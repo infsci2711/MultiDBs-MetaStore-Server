@@ -13,8 +13,10 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import metaStoreServer.metaStoreSchemaModel;
 import metaStoreServer.metaStoreService;
 import metaStoreServer.metaStoreDBModel;
+import metaStoreServer.metaStoreTableModel;
 import metaStoreServerApi.metaStore;
 @Path("metaStore/")
 public class metaStoreRestService {
@@ -40,6 +42,54 @@ public class metaStoreRestService {
 		}
 		
 	}
+	
+	
+	//DB_Table...
+public Response allDB_Tables(String DBname) {
+		
+		metaStoreService metaStoreService = new metaStoreService();
+		
+		List<metaStoreTableModel> DB_Tables;
+		try {
+			DB_Tables = metaStoreService.findTables( DBname);
+		
+			List<DB_Table> metaStores_tables = convertTbToViewModel(DB_Tables);
+			
+			GenericEntity<List<DB_Table>> entity = new GenericEntity<List<DB_Table>>(metaStores_tables) {};
+			
+			return Response.status(200).entity(entity).build();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return Response.status(500).build();
+		}
+		
+	}
+
+
+
+//DB_Table_Schema...
+public Response Tables_Schema(String TBname) {
+	
+	metaStoreService metaStoreService = new metaStoreService();
+	
+	metaStoreSchemaModel table_schema;
+	try {
+		table_schema = metaStoreService.findSchema(TBname);
+	
+		GenericEntity<metaStoreSchemaModel> entity = new GenericEntity<metaStoreSchemaModel>(table_schema) {};
+		
+		return Response.status(200).entity(entity).build();
+	} catch (Exception e) {
+		System.out.println(e.getMessage());
+		return Response.status(500).build();
+	}
+	
+}
+
+
+	
+	
+	
 	
 	@Path("{id}")
 	@GET
@@ -99,4 +149,23 @@ public class metaStoreRestService {
 	private metaStore convertDbToViewModel(final metaStoreDBModel metaStoreDB) {
 		return new metaStore(metaStoreDB.getId(), metaStoreDB.getDBtype(), metaStoreDB.getIPAddress(), metaStoreDB.getPort(),metaStoreDB.getUsername(),metaStoreDB.getPassword(),metaStoreDB.getDBname());
 	}
+	
+	
+	
+	///tb---
+	private List<DB_Table> convertTbToViewModel(final List<metaStoreTableModel> metaStoresTB) {
+		List<DB_Table> result = new ArrayList<DB_Table>();
+		for(metaStoreTableModel metaStoreTB : metaStoresTB) {
+			result.add(convertTbToViewModel(metaStoreTB));
+		}
+		
+		return result;
+	}
+	
+	private DB_Table convertTbToViewModel(final metaStoreTableModel metaStoreTB) {
+		return new DB_Table(metaStoreTB.getTable());
+	}
+	
+
+	
 }
