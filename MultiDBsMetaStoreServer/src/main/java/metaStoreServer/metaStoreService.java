@@ -33,8 +33,8 @@ public class metaStoreService {
 	}
 	
 	
-	public List<String> findTables(final String DBname) throws SQLException, Exception {
-		List<String> result = metaStoreTableDAO.findTables(DBname);
+	public List<metaStoreTableModel> findTables(final String DBname) throws SQLException, Exception {
+		List<metaStoreTableModel> result = metaStoreTableDAO.findTables(DBname);
 		
 		return result;
 	}

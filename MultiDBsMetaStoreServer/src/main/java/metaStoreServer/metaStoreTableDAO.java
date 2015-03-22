@@ -9,17 +9,17 @@ import java.util.List;
 
 public class metaStoreTableDAO {
 	
-	public static List<String> findTables( final String DBname ) throws SQLException, Exception{
+	public static List<metaStoreTableModel> findTables( final String DBname ) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
 			String sql = String.format("show tables from "+DBname);
 			try (Statement statement = connection.createStatement()){
 				ResultSet resultSet = statement.executeQuery(sql);
 				
-				List<String> result = new ArrayList<String>();
+				List<metaStoreTableModel> result = new ArrayList<metaStoreTableModel>();
 				
 				while (resultSet.next()) {
-					result.add(resultSet.getString(1));
+					result.add(new metaStoreTableModel(resultSet.getString(1)));
 				}
 				
 				return result;
