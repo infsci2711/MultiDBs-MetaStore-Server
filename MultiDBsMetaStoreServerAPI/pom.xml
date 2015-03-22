@@ -93,7 +93,7 @@
                             <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-			                	<mainClass>edu.pitt.sis.infsci2711.tutorial.TutorialServer</mainClass>
+			                	<mainClass>meataStoreServer</mainClass>
 			                </transformer>
                         </transformers> 
                         <filters>
