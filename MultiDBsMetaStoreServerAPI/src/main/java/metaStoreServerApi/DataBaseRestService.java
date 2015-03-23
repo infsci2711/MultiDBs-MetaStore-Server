@@ -16,7 +16,7 @@ import metaStoreServer.metaStoreDatabaseModel;
 import metaStoreServer.metaStoreSchemaModel;
 import metaStoreServer.metaStoreService;
 
-
+@Path("Database/")
 public class DataBaseRestService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

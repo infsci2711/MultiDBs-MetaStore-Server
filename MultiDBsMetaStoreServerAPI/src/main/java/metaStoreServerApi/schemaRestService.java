@@ -18,6 +18,8 @@ import metaStoreServer.metaStoreService;
 import metaStoreServer.metaStoreDBModel;
 import metaStoreServer.metaStoreTableModel;
 import metaStoreServerApi.metaStore;
+
+@Path("Table_Schema/")
 public class schemaRestService {
 
 	@Path("{TBname}")
