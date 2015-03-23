@@ -19,7 +19,7 @@ import metaStoreServer.metaStoreDBModel;
 import metaStoreServer.metaStoreTableModel;
 import metaStoreServerApi.metaStore;
 
-@Path("DB_Table/")
+@Path("Table/")
 public class tableRestService {
 	
 	@Path("{DBname}")
