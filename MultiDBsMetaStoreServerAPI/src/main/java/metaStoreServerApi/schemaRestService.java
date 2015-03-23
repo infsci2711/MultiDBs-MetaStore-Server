@@ -48,7 +48,7 @@ public class schemaRestService {
 
 	//schema
 	private Table_Schema convertSchemaToViewModel(final metaStoreSchemaModel Schema) {
-		return new Table_Schema(Schema.getId(),Schema.getTBfield(),Schema.getTBtype(),Schema.getTBnull(),Schema.getTBkey(),Schema.getTBdefault(),Schema.getTBextra());
+		return new Table_Schema(Schema.getTBfield(),Schema.getTBtype(),Schema.getTBnull(),Schema.getTBkey(),Schema.getTBdefault(),Schema.getTBextra());
 	}
 	
 

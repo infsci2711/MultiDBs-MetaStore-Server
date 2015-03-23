@@ -16,7 +16,7 @@ public class metaStoreSchemaDAO {
 				 ResultSet resultSet = statement.executeQuery(sql);
 				
 				while (resultSet.next()) {
-					return new metaStoreSchemaModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));					 
+					return new metaStoreSchemaModel(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6));					 
 				}
 				
 				return null;

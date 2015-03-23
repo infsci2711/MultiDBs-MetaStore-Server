@@ -2,7 +2,6 @@ package metaStoreServerApi;
 
 public class Table_Schema {
 
-		private int id;
 		private String TBfield;
 		private String TBtype;
 		private String TBnull;
@@ -22,27 +21,6 @@ public class Table_Schema {
 			this.setTBkey(TBkey);
 			this.setTBdefault(TBdefault);
 			this.setTBextra(TBextra);
-		}
-
-		
-		public Table_Schema(final int id, final String TBfield, final String TBtype, final String TBnull,
-				final String key, final String TBdefault, final String TBextra){		
-			this.setId(id);
-			this.setTBfield(TBfield);
-			this.setTBtype(TBtype);
-			this.setTBnull(TBnull);
-			this.setTBkey(TBkey);
-			this.setTBdefault(TBdefault);
-			this.setTBextra(TBextra);
-			
-		}
-		
-		public int getId() {
-			return id;
-		}
-
-		public void setId(int id) {
-			this.id = id;
 		}
 		
 		public String getTBfield() {
