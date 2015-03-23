@@ -4,6 +4,10 @@ public class DataBase {
 
 	private String database;
 	
+	public DataBase(){
+		
+	}
+	
 	public DataBase( final String database){
 		this.setDatabase(database);
 	}

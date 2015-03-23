@@ -3,6 +3,10 @@ package metaStoreServer;
 public class metaStoreDatabaseModel {
 	private String database;
 	
+	public metaStoreDatabaseModel(){
+		
+	}
+	
 	public metaStoreDatabaseModel( final String database){
 		this.setDatabase(database);
 	}

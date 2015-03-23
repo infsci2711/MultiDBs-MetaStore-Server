@@ -10,7 +10,7 @@ public class metaStoreSchemaDAO {
 	public static metaStoreSchemaModel findSchema( final String TBname ,final String DBname) throws SQLException, Exception{
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = String.format("show columns from "+TBname+"from"+DBname);
+			String sql = String.format("show columns from "+TBname+" from "+DBname);
 			try (Statement statement = connection.createStatement()){
 				//re
 				 ResultSet resultSet = statement.executeQuery(sql);
