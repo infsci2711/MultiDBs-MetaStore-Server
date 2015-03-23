@@ -30,13 +30,13 @@ public class schemaRestService {
 		
 		metaStoreService metaStoreService = new metaStoreService();
 		
-		metaStoreSchemaModel table_schema;
+		List<metaStoreSchemaModel> table_schemas;
 		try {
-			table_schema = metaStoreService.findSchema(TBname,DBname);
+			table_schemas = metaStoreService.findSchema(TBname,DBname);
 			
-			Table_Schema schema=convertSchemaToViewModel(table_schema);
+			List<Table_Schema> schemas=convertSCToViewModel(table_schemas);
 		
-			GenericEntity<Table_Schema> entity = new GenericEntity<Table_Schema>(schema) {};
+			GenericEntity<List<Table_Schema>> entity = new GenericEntity<List<Table_Schema>>(schemas) {};
 			
 			return Response.status(200).entity(entity).build();
 		} catch (Exception e) {
@@ -47,8 +47,19 @@ public class schemaRestService {
 	}
 
 	//schema
-	private Table_Schema convertSchemaToViewModel(final metaStoreSchemaModel Schema) {
-		return new Table_Schema(Schema.getTBfield(),Schema.getTBtype(),Schema.getTBnull(),Schema.getTBkey(),Schema.getTBdefault(),Schema.getTBextra());
+	
+	private Table_Schema convertSCToViewModel(final metaStoreSchemaModel metaStoreSC) {
+		return new Table_Schema(metaStoreSC.getTBfield(),metaStoreSC.getTBtype(),metaStoreSC.getTBnull(),metaStoreSC.getTBkey(),metaStoreSC.getTBdefault(),metaStoreSC.getTBextra());
+	}
+	
+	///tb---
+	private List<Table_Schema> convertSCToViewModel(final List<metaStoreSchemaModel> metaStoresSC) {
+		List<Table_Schema> result = new ArrayList<Table_Schema>();
+		for(metaStoreSchemaModel metaStoreSC : metaStoresSC) {
+			result.add(convertSCToViewModel(metaStoreSC));
+		}
+		
+		return result;
 	}
 	
 
