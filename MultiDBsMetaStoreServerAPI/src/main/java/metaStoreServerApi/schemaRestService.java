@@ -22,17 +22,17 @@ import metaStoreServerApi.metaStore;
 @Path("Table_Schema/")
 public class schemaRestService {
 
-	@Path("{TBname}")
+	@Path("{DBname}/{TBname}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	//DB_Table_Schema...
-	public Response Tables_Schema(@PathParam("TBname") String TBname) {
+	public Response Tables_Schema(@PathParam("TBname") String TBname,@PathParam("DBname") String DBname) {
 		
 		metaStoreService metaStoreService = new metaStoreService();
 		
 		metaStoreSchemaModel table_schema;
 		try {
-			table_schema = metaStoreService.findSchema(TBname);
+			table_schema = metaStoreService.findSchema(TBname,DBname);
 			
 			Table_Schema schema=convertSchemaToViewModel(table_schema);
 		
