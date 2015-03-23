@@ -44,81 +44,6 @@ public class metaStoreRestService {
 		
 	}
 	
-	@Path("{DBname}")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	//DB_Table...
-public Response allDB_Tables(@PathParam("DBname")String DBname) {
-		
-		metaStoreService metaStoreService = new metaStoreService();
-		
-		List<metaStoreTableModel> DB_Tables;
-		try {
-			DB_Tables = metaStoreService.findTables( DBname);
-		
-			List<DB_Table> metaStores_tables = convertTbToViewModel(DB_Tables);
-			
-			GenericEntity<List<DB_Table>> entity = new GenericEntity<List<DB_Table>>(metaStores_tables) {};
-			
-			return Response.status(200).entity(entity).build();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return Response.status(500).build();
-		}
-		
-	}
-
-
-@Path("{TBname}")
-@GET
-@Produces(MediaType.APPLICATION_JSON)
-//DB_Table_Schema...
-public Response Tables_Schema(@PathParam("TBname") String TBname) {
-	
-	metaStoreService metaStoreService = new metaStoreService();
-	
-	metaStoreSchemaModel table_schema;
-	try {
-		table_schema = metaStoreService.findSchema(TBname);
-		
-		Table_Schema schema=convertSchemaToViewModel(table_schema);
-	
-		GenericEntity<Table_Schema> entity = new GenericEntity<Table_Schema>(schema) {};
-		
-		return Response.status(200).entity(entity).build();
-	} catch (Exception e) {
-		System.out.println(e.getMessage());
-		return Response.status(500).build();
-	}
-	
-}
-
-
-//Data base...
-public Response Data_Base() {
-	
-	metaStoreService metaStoreService = new metaStoreService();
-	
-	List<metaStoreDatabaseModel> data_base;
-	try {
-		data_base = metaStoreService.findDB();
-		List<DataBase> bases = convertDatabaseToViewModel(data_base);
-	
-		GenericEntity<List<DataBase>> entity = new GenericEntity<List<DataBase>>(bases) {};
-		
-		return Response.status(200).entity(entity).build();
-	} catch (Exception e) {
-		System.out.println(e.getMessage());
-		return Response.status(500).build();
-	}
-	
-}
-
-
-
-	
-	
-	
 	
 	@Path("{id}")
 	@GET
@@ -179,39 +104,8 @@ public Response Data_Base() {
 		return new metaStore(metaStoreDB.getId(), metaStoreDB.getDBtype(), metaStoreDB.getIPAddress(), metaStoreDB.getPort(),metaStoreDB.getUsername(),metaStoreDB.getPassword(),metaStoreDB.getDBname());
 	}
 	
+
 	
-	
-	///tb---
-	private List<DB_Table> convertTbToViewModel(final List<metaStoreTableModel> metaStoresTB) {
-		List<DB_Table> result = new ArrayList<DB_Table>();
-		for(metaStoreTableModel metaStoreTB : metaStoresTB) {
-			result.add(convertTbToViewModel(metaStoreTB));
-		}
-		
-		return result;
-	}
-	
-	private DB_Table convertTbToViewModel(final metaStoreTableModel metaStoreTB) {
-		return new DB_Table(metaStoreTB.getTable());
-	}
-	
-  ////data base..
-	private List<DataBase> convertDatabaseToViewModel(final List<metaStoreDatabaseModel> Data_Bases) {
-		List<DataBase> result = new ArrayList<DataBase>();
-		for(metaStoreDatabaseModel Data_Base : Data_Bases) {
-			result.add(convertDatabaseToViewModel(Data_Base));
-		}
-		
-		return result;
-	}
-	
-	private DataBase convertDatabaseToViewModel(final metaStoreDatabaseModel Data_Base) {
-		return new DataBase(Data_Base.getDatabase());
-	}
-	
-	//schema
-	private Table_Schema convertSchemaToViewModel(final metaStoreSchemaModel Schema) {
-		return new Table_Schema(Schema.getId(),Schema.getTBfield(),Schema.getTBtype(),Schema.getTBnull(),Schema.getTBkey(),Schema.getTBdefault(),Schema.getTBextra());
-	}
+
 	
 }
