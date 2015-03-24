@@ -1,14 +1,13 @@
-package metaStoreServerApi;
+package edu.pitt.sis.infsci2711.metastoreserver;
 
-public class DataBase {
-
+public class metaStoreDatabaseModel {
 	private String database;
 	
-	public DataBase(){
+	public metaStoreDatabaseModel(){
 		
 	}
 	
-	public DataBase( final String database){
+	public metaStoreDatabaseModel( final String database){
 		this.setDatabase(database);
 	}
 	
@@ -18,6 +17,4 @@ public class DataBase {
 	public void setDatabase(String database) {
 		this.database = database;
 	}
-		
-	}
-
+}

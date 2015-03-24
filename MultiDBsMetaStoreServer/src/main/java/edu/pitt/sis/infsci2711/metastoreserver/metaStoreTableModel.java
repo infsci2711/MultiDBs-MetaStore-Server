@@ -1,14 +1,14 @@
-package metaStoreServerApi;
+package edu.pitt.sis.infsci2711.metastoreserver;
 
-public class DB_Table {
+public class metaStoreTableModel {
 
 	 private String table;
 		
-		public DB_Table(){
+		public metaStoreTableModel(){
 			
 		}
 		
-		public DB_Table(final String table){
+		public metaStoreTableModel(final String table){
 			this.setTable(table);
 		}
 		

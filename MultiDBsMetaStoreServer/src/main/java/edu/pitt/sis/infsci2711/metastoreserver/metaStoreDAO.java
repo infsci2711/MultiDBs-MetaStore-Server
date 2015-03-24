@@ -1,4 +1,4 @@
-package metaStoreServer;
+package edu.pitt.sis.infsci2711.metastoreserver;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import metaStoreServer.metaStoreDBModel;
-import metaStoreServer.JdbcUtil;
+import edu.pitt.sis.infsci2711.metastoreserver.JdbcUtil;
+import edu.pitt.sis.infsci2711.metastoreserver.metaStoreDBModel;
 
 public class metaStoreDAO {
 	public static List<metaStoreDBModel> findAll() throws SQLException, Exception {

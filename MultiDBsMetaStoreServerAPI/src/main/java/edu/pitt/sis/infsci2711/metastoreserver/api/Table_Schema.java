@@ -1,4 +1,4 @@
-package metaStoreServerApi;
+package edu.pitt.sis.infsci2711.metastoreserver.api;
 
 public class Table_Schema {
 

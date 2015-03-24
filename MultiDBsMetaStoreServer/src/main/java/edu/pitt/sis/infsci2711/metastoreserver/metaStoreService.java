@@ -1,10 +1,10 @@
-package metaStoreServer;
+package edu.pitt.sis.infsci2711.metastoreserver;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import metaStoreServer.metaStoreDAO;
-import metaStoreServer.metaStoreDBModel;
+import edu.pitt.sis.infsci2711.metastoreserver.metaStoreDAO;
+import edu.pitt.sis.infsci2711.metastoreserver.metaStoreDBModel;
 
 public class metaStoreService {
 

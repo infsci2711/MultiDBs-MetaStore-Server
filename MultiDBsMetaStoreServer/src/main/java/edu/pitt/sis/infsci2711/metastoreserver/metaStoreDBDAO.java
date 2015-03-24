@@ -1,4 +1,4 @@
-package metaStoreServer;
+package edu.pitt.sis.infsci2711.metastoreserver;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package metaStoreServerApi;
+package edu.pitt.sis.infsci2711.metastoreserver.api;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +12,9 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import metaStoreServer.metaStoreDatabaseModel;
-import metaStoreServer.metaStoreSchemaModel;
-import metaStoreServer.metaStoreService;
+import edu.pitt.sis.infsci2711.metastoreserver.metaStoreDatabaseModel;
+import edu.pitt.sis.infsci2711.metastoreserver.metaStoreSchemaModel;
+import edu.pitt.sis.infsci2711.metastoreserver.metaStoreService;
 
 @Path("Database/")
 public class DataBaseRestService {

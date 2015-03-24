@@ -1,6 +1,6 @@
-package metaStoreServer;
+package edu.pitt.sis.infsci2711.metastoreserver.api;
 
-public class metaStoreDBModel {
+public class metaStore {
 	private int id;
 	private String DBtype;
 	private String  IPAddress;
@@ -9,11 +9,11 @@ public class metaStoreDBModel {
 	private String password;
 	private String DBname;
 	
-	public metaStoreDBModel(){
+	public metaStore(){
 		
 	}
 	
-	public metaStoreDBModel(final String DBtype, final String IPAdress, final int port,
+	public metaStore(final String DBtype, final String IPAdress, final int port,
 			final String username, final String password, final String DBname){
 		this.setDBtype(DBtype);
 		this.setIPAddress(IPAdress);
@@ -23,7 +23,7 @@ public class metaStoreDBModel {
 		this.setDBname(DBname);
 	}
 	
-	public metaStoreDBModel(final int id, final String DBtype, final String IPAdress, 
+	public metaStore(final int id, final String DBtype, final String IPAdress, 
 			final int port, final String username, final String password, final String DBname){		
 		this.setId(id);
 		this.setDBtype(DBtype);
@@ -90,6 +90,4 @@ public class metaStoreDBModel {
 	public void setDBname(String dBname) {
 		DBname = dBname;
 	}
-	
-	
 }
