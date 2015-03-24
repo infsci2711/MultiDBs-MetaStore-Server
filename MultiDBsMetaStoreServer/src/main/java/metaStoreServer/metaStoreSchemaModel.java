@@ -14,7 +14,7 @@ public class metaStoreSchemaModel {
 	}
 	
 	public metaStoreSchemaModel(final String TBfield, final String TBtype, final String TBnull,
-			final String key, final String TBdefault, final String TBextra){
+			final String TBkey, final String TBdefault, final String TBextra){
 		this.setTBfield(TBfield);
 		this.setTBtype(TBtype);
 		this.setTBnull(TBnull);
