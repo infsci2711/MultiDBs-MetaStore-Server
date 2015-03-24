@@ -9,7 +9,8 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
+CREATE DATABASE  IF NOT EXISTS `infsci2711_test2` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `infsci2711_test2`;
 --
 -- Database: `db`
 --
