@@ -7,7 +7,7 @@ package edu.pitt.sis.infsci2711.metastoreserver;
 	public class JdbcUtil {
 		public static final String DEFAULT_HOST = "54.152.26.131";//"localhost";//
 		
-		public static final int DEFAULT_PORT = 3306;
+		public static final int DEFAULT_PORT = 7654;
 		
 		public static final String DEFAULT_USER = "root"; //CHANGE TO YOUR MYSQL USER NAME
 		
