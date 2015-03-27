@@ -2,7 +2,8 @@ package edu.pitt.sis.infsci2711.metastoreserver;
 
 
 	import java.sql.Connection;
-	import java.sql.DriverManager;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 //capital J!
 	public class JdbcUtil {
 		public static final String DEFAULT_HOST = "localhost";//
@@ -18,7 +19,16 @@ package edu.pitt.sis.infsci2711.metastoreserver;
 		public static Connection getConnection() throws Exception {
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			return DriverManager.getConnection(getConnectionString(), DEFAULT_USER, DEFAULT_PASSWOD);
+			try {
+				return DriverManager.getConnection(getConnectionString(), DEFAULT_USER, DEFAULT_PASSWOD);
+			}
+			catch (SQLException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				
+				
+				throw e;
+			}
 		}
 		
 		public static String getConnectionString() {
