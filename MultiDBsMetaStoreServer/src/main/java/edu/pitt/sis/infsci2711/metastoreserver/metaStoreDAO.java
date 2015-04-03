@@ -22,7 +22,7 @@ public class metaStoreDAO {
 				List<metaStoreDBModel> result = new ArrayList<metaStoreDBModel>();
 				
 				while (resultSet.next()) {
-					result.add(new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7)));					 
+					result.add(new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7),resultSet.getString(8)));					 
 				}
 				
 				return result;
@@ -40,7 +40,7 @@ public class metaStoreDAO {
 				ResultSet resultSet = statement.executeQuery(sql);
 				
 				while (resultSet.next()) {
-					return new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));					 
+					return new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7),resultSet.getString(8));					 
 				}
 				
 				return null;
@@ -78,7 +78,7 @@ public class metaStoreDAO {
 				ResultSet resultSet = statement.executeQuery(sql);
 				
 				while (resultSet.next()) {
-					return new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));					 
+					return new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7),resultSet.getString(8));					 
 				}
 				
 				return null;

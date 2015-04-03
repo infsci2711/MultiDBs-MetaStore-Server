@@ -110,7 +110,7 @@ public class metaStoreRestService {
 
 	private metaStoreDBModel convertViewModelToDB(final metaStore metaStore) {
 		return new metaStoreDBModel(metaStore.getDBtype(), metaStore.getIPAddress(), 
-				metaStore.getPort(),metaStore.getUsername(),metaStore.getPassword(),metaStore.getDBname());
+				metaStore.getPort(),metaStore.getUsername(),metaStore.getPassword(),metaStore.getDBname(),metaStore.getLabel());
 	}
 
 	private List<metaStore> convertDbToViewModel(final List<metaStoreDBModel> metaStoresDB) {
