@@ -8,6 +8,7 @@ public class metaStore {
 	private String username;
 	private String password;
 	private String DBname;
+	private String Label;
 	
 	public metaStore(){
 		
@@ -32,7 +33,7 @@ public class metaStore {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setDBname(DBname);
-		
+
 	}
 
 	public int getId() {
