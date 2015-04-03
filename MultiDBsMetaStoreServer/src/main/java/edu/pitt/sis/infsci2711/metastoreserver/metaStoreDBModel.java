@@ -8,23 +8,25 @@ public class metaStoreDBModel {
 	private String username;
 	private String password;
 	private String DBname;
+	private String Label;
 	
 	public metaStoreDBModel(){
 		
 	}
 	
 	public metaStoreDBModel(final String DBtype, final String IPAdress, final int port,
-			final String username, final String password, final String DBname){
+			final String username, final String password, final String DBname, final String Label){
 		this.setDBtype(DBtype);
 		this.setIPAddress(IPAdress);
 		this.setPort(port);
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setDBname(DBname);
+		this.setLabel(Label);
 	}
 	
 	public metaStoreDBModel(final int id, final String DBtype, final String IPAdress, 
-			final int port, final String username, final String password, final String DBname){		
+			final int port, final String username, final String password, final String DBname, final String Label){		
 		this.setId(id);
 		this.setDBtype(DBtype);
 		this.setIPAddress(IPAdress);
@@ -32,6 +34,7 @@ public class metaStoreDBModel {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setDBname(DBname);
+		this.setLabel(Label);
 		
 	}
 
@@ -89,6 +92,14 @@ public class metaStoreDBModel {
 
 	public void setDBname(String dBname) {
 		DBname = dBname;
+	}
+	
+	public String getLabel(){
+		return this.id + this.DBname;
+	}
+	
+	public void setLabel(String label) {
+		Label = label;
 	}
 	
 	
