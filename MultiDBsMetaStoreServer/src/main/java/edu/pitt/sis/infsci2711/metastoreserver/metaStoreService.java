@@ -27,6 +27,13 @@ public class metaStoreService {
 		return result;
 	}
 	
+	// check DBname
+	public boolean checkDBname(String DBname)throws SQLException, Exception {
+		
+		return metaStoreDAO.checkByDBname(DBname) ;
+	}
+	
+	
 	//by Label
 	public metaStoreDBModel findByLabel(final String Label) throws SQLException, Exception {
 		metaStoreDBModel result = metaStoreDAO.findByLabel(Label);

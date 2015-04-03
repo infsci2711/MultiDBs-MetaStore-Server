@@ -37,6 +37,7 @@ public class metaStoreRestService {
 			GenericEntity<List<metaStore>> entity = new GenericEntity<List<metaStore>>(metaStores) {};
 			
 			return Response.status(200).entity(entity).build();
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return Response.status(500).build();
@@ -97,16 +98,23 @@ public class metaStoreRestService {
 		metaStoreService metaStoreService = new metaStoreService();
 		
 		try {
+		if(metaStoreService.checkDBname(metaStore.getDBname())){
 			metaStoreDBModel metaStoresDB = metaStoreService.add(convertViewModelToDB(metaStore));
 		
 			metaStore metaStoreInserted = convertDbToViewModel(metaStoresDB);
 			
 			return Response.status(200).entity(metaStoreInserted).build();
+		}else{
+			return Response.status(400).build();
+		}
+			
 		} catch (Exception e) {
 			return Response.status(500).build();
 		}
 		
 	}
+	
+	
 
 	private metaStoreDBModel convertViewModelToDB(final metaStore metaStore) {
 		return new metaStoreDBModel(metaStore.getDBtype(), metaStore.getIPAddress(), 

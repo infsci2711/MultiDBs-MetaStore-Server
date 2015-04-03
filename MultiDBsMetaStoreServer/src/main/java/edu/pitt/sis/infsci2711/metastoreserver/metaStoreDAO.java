@@ -86,6 +86,25 @@ public class metaStoreDAO {
 		}
 		
 	}
+    public static boolean checkByDBname(final String  DBname) throws SQLException, Exception {
+		
+ 		try (Connection connection = JdbcUtil.getConnection()) {
+ 			String sql = "SELECT * FROM metaStore where DBname = " + DBname;
+ 			try (Statement statement = connection.createStatement()){
+ 				
+ 				ResultSet resultSet = statement.executeQuery(sql);
+ 				
+ 				while (resultSet.next()) {
+ 					return false;
+ 				}
+ 				
+ 				return true;
+ 			}
+ 		}
+ 		
+ 	}
+    
+    
     
     public static metaStoreDBModel findByLabel(final String  Label) throws SQLException, Exception {
 		
