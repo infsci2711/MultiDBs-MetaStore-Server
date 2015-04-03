@@ -69,7 +69,7 @@ public class metaStoreDAO {
 		
 	}
 	//FIND by NAME
-public static metaStoreDBModel findByDBname(final String  DBname) throws SQLException, Exception {
+    public static metaStoreDBModel findByDBname(final String  DBname) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
 			String sql = "SELECT * FROM metaStore where DBname = " + DBname;
@@ -86,8 +86,23 @@ public static metaStoreDBModel findByDBname(final String  DBname) throws SQLExce
 		}
 		
 	}
-	
-	
-	
+    
+    public static metaStoreDBModel findByLabel(final String  Label) throws SQLException, Exception {
+		
+		try (Connection connection = JdbcUtil.getConnection()) {
+			String sql = "SELECT * FROM metaStore where Label = " + Label;
+			try (Statement statement = connection.createStatement()){
+				
+				ResultSet resultSet = statement.executeQuery(sql);
+				
+				while (resultSet.next()) {
+					return new metaStoreDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7));					 
+				}
+				
+				return null;
+			}
+		}
+		
+	}	
 	
 }
