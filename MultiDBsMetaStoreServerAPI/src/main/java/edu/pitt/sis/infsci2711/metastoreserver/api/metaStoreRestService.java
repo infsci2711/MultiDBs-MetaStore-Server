@@ -67,6 +67,28 @@ public class metaStoreRestService {
 		
 	}
 	
+	@Path("{DBname}")
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	public Response metaStoreByDBname(@PathParam("DBname") final String DBname) {
+		
+		metaStoreService metaStoreService = new metaStoreService();
+		
+		try {
+			metaStoreDBModel metaStoresDB = metaStoreService.findByDBname(DBname);
+		 
+			if (metaStoresDB != null) {
+				metaStore metaStore = convertDbToViewModel(metaStoresDB);
+			
+				return Response.status(200).entity(metaStore).build();
+			}
+			return Response.status(404).entity("metaStore not found").build();
+		} catch (Exception e) {
+			return Response.status(500).build();
+		}
+		
+	}
+	
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
