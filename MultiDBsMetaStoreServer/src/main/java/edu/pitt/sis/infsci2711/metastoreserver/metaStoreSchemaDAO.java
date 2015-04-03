@@ -10,8 +10,10 @@ import java.util.List;
 public class metaStoreSchemaDAO {
 	
 	public static List<metaStoreSchemaModel> findSchema( final String TBname ,final String DBname) throws SQLException, Exception{
-		
-		try (Connection connection = JdbcUtil.getConnection()) {
+		metaStoreService metaStoreService = new metaStoreService();		
+		metaStoreDBModel metaStoresDB = metaStoreService.findByDBname(DBname);
+		JdbcUtilFather jdbc = new JdbcUtilFather(metaStoresDB.getIPAddress(), metaStoresDB.getPort(), metaStoresDB.getUsername(), metaStoresDB.getPassword(), metaStoresDB.getDBname());
+		try (Connection connection = jdbc.getConnection()) {
 			String sql = String.format("show columns from "+TBname+" from "+DBname);
 			try (Statement statement = connection.createStatement()){
 				//re

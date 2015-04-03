@@ -5,7 +5,8 @@ package edu.pitt.sis.infsci2711.metastoreserver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 //capital J!
-	public class JdbcUtil {
+	public class JdbcUtil //extends JdbcUtilFather
+	{
 		public static final String DEFAULT_HOST = "localhost";//
 		
 		public static final int DEFAULT_PORT = 3306;
