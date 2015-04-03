@@ -20,6 +20,12 @@ public class metaStoreService {
 		
 		return result;
 	}
+	//by DBname
+	public metaStoreDBModel findByDBname(final String DBname) throws SQLException, Exception {
+		metaStoreDBModel result = metaStoreDAO.findByDBname(DBname);
+		
+		return result;
+	}
 	
 	public metaStoreDBModel add(final metaStoreDBModel metaStore) throws SQLException, Exception {
 		metaStoreDAO.save(metaStore);
