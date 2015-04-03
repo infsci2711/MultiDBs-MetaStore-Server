@@ -27,6 +27,13 @@ public class metaStoreService {
 		return result;
 	}
 	
+	//by Label
+	public metaStoreDBModel findByLabel(final String Label) throws SQLException, Exception {
+		metaStoreDBModel result = metaStoreDAO.findByLabel(Label);
+		
+		return result;
+	}
+	
 	public metaStoreDBModel add(final metaStoreDBModel metaStore) throws SQLException, Exception {
 		metaStoreDAO.save(metaStore);
 		
