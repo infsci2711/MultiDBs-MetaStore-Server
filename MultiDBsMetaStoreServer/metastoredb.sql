@@ -1,7 +1,15 @@
+-- phpMyAdmin SQL Dump
+-- version 4.2.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:3306
+-- Generation Time: Apr 06, 2015 at 12:51 AM
+-- Server version: 5.5.38
+-- PHP Version: 5.5.14
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-CREATE DATABASE  IF NOT EXISTS `group1` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `group1`;
+
 --
 -- Database: `group1`
 --
@@ -27,13 +35,7 @@ CREATE TABLE `metaStore` (
 --
 
 INSERT INTO `metaStore` (`ID`, `DBtype`, `IPAddress`, `port`, `username`, `password`, `DBname`) VALUES
-(1, 'MySQL', '1.2.3.4', 80, 'hao', 'hao', 'metastore'),
-(2, 'MySQL', '1.2.3.4', 80, 'hao', 'hao', 'metastore'),
-(3, 'MySQL', '1.2.3.4', 0, 'hao', 'hao', 'metastore'),
-(4, 'MySQL', '1.2.3.4', 0, 'hao', 'hao', 'store'),
-(5, '1', '1', 1, '1', '1', '1'),
-(6, '1', '1', 1, '1', '1', '1'),
-(7, '2', '2', 2, '2', '2', '2');
+(1, 'MySQL', 'localhost', 3306, 'root', 'root', 'group1');
 
 --
 -- Indexes for dumped tables
