@@ -12,8 +12,8 @@ public class metaStoreTableDAO {
 	public static List<metaStoreTableModel> findTables( final String DBname ) throws SQLException, Exception{
 		metaStoreService metaStoreService = new metaStoreService();		
 		metaStoreDBModel metaStoresDB = metaStoreService.findByDBname(DBname);
-		JdbcUtilFather jdbc = new JdbcUtilFather(metaStoresDB.getIPAddress(), metaStoresDB.getPort(), metaStoresDB.getUsername(), metaStoresDB.getPassword(), metaStoresDB.getDBname());
-		try (Connection connection = jdbc.getConnection()) {
+		new JdbcUtilFather(metaStoresDB.getIPAddress(), metaStoresDB.getPort(), metaStoresDB.getUsername(), metaStoresDB.getPassword(), metaStoresDB.getDBname());
+		try (Connection connection = JdbcUtilFather.getConnection()) {
 			String sql = String.format("show tables from "+DBname);
 			try (Statement statement = connection.createStatement()){
 				ResultSet resultSet = statement.executeQuery(sql);

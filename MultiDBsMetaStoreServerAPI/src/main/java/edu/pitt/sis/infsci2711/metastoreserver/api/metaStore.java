@@ -22,6 +22,8 @@ public class metaStore {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setDBname(DBname);
+		this.setLabel();
+
 	}
 	
 	public metaStore(final int id, final String DBtype, final String IPAdress, 
@@ -33,7 +35,8 @@ public class metaStore {
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setDBname(DBname);
-
+		this.setLabel();
+		
 	}
 
 	public int getId() {
@@ -90,5 +93,15 @@ public class metaStore {
 
 	public void setDBname(String dBname) {
 		DBname = dBname;
+	}
+	
+	public void setLabel(){
+		
+		this.Label=this.id+this.DBname;
+		
+	}
+	
+	public String getLabel(){
+		return this.Label;
 	}
 }

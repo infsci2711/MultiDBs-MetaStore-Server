@@ -68,7 +68,7 @@ public class metaStoreRestService {
 		
 	}
 	
-	@Path("{DBname}")
+	@Path("name/{DBname}")
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	public Response metaStoreByDBname(@PathParam("DBname") final String DBname) {
@@ -105,7 +105,7 @@ public class metaStoreRestService {
 			
 			return Response.status(200).entity(metaStoreInserted).build();
 		}else{
-			return Response.status(400).build();
+			return Response.status(400).entity("DBname already existed").build();
 		}
 			
 		} catch (Exception e) {
