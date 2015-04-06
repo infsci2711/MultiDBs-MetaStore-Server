@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `metaStore`
 --
-
+CREATE DATABASE `group1`;
 CREATE TABLE `metaStore` (
 `ID` int(11) NOT NULL,
   `DBtype` varchar(45) DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `metaStore` (
 --
 
 INSERT INTO `metaStore` (`ID`, `DBtype`, `IPAddress`, `port`, `username`, `password`, `DBname`) VALUES
-(1, 'MySQL', 'localhost', 3306, 'root', 'root', 'group1');
+(1, 'MySQL', 'localhost', 3306, 'root', 'hao', 'group1');
 
 --
 -- Indexes for dumped tables
