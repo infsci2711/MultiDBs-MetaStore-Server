@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `metaStore`
 --
-
+CREATE DATABASE `group1`;
 CREATE TABLE `metaStore` (
 `ID` int(11) NOT NULL,
   `DBtype` varchar(45) DEFAULT NULL,
