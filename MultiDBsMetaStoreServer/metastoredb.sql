@@ -19,7 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `metaStore`
 --
-CREATE DATABASE `group1`;
+CREATE DATABASE  IF NOT EXISTS `group1` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `group1`;
 CREATE TABLE `metaStore` (
 `ID` int(11) NOT NULL,
   `DBtype` varchar(45) DEFAULT NULL,
