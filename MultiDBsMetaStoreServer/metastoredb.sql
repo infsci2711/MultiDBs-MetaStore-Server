@@ -35,7 +35,7 @@ CREATE TABLE `metaStore` (
 --
 
 INSERT INTO `metaStore` (`ID`, `DBtype`, `IPAddress`, `port`, `username`, `password`, `DBname`) VALUES
-(1, 'MySQL', 'localhost', 3306, 'root', 'root', 'group1');
+(1, 'MySQL', 'localhost', 3306, 'root', 'hao', 'group1');
 
 --
 -- Indexes for dumped tables
