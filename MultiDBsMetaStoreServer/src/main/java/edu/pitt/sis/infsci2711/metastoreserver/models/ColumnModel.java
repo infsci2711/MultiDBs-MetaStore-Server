@@ -1,6 +1,6 @@
-package edu.pitt.sis.infsci2711.metastoreserver;
+package edu.pitt.sis.infsci2711.metastoreserver.models;
 
-public class metaStoreSchemaModel {
+public class ColumnModel {
 
 	private String TBfield;
 	private String TBtype;
@@ -9,11 +9,11 @@ public class metaStoreSchemaModel {
 	private String TBdefault;
 	private String TBextra;
 	
-	public metaStoreSchemaModel(){
+	public ColumnModel(){
 		
 	}
 	
-	public metaStoreSchemaModel(final String TBfield, final String TBtype, final String TBnull,
+	public ColumnModel(final String TBfield, final String TBtype, final String TBnull,
 			final String TBkey, final String TBdefault, final String TBextra){
 		this.setTBfield(TBfield);
 		this.setTBtype(TBtype);

@@ -1,4 +1,4 @@
-package edu.pitt.sis.infsci2711.metastoreserver.api;
+package edu.pitt.sis.infsci2711.metastoreserver.rest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +12,10 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import edu.pitt.sis.infsci2711.metastoreserver.metaStoreDatabaseModel;
-import edu.pitt.sis.infsci2711.metastoreserver.metaStoreSchemaModel;
-import edu.pitt.sis.infsci2711.metastoreserver.metaStoreService;
+import edu.pitt.sis.infsci2711.metastoreserver.business.DatasourcesService;
+import edu.pitt.sis.infsci2711.metastoreserver.models.metaStoreDatabaseModel;
+import edu.pitt.sis.infsci2711.metastoreserver.models.ColumnModel;
+import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.DataBase;
 
 @Path("Database/")
 public class DataBaseRestService {
@@ -23,7 +24,7 @@ public class DataBaseRestService {
 	//Data base...
 	public Response Data_Base() {
 		
-		metaStoreService metaStoreService = new metaStoreService();
+		DatasourcesService metaStoreService = new DatasourcesService();
 		
 		List<metaStoreDatabaseModel> data_base;
 		try {

@@ -28,15 +28,17 @@ CREATE TABLE `metaStore` (
   `port` int(11) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `DBname` varchar(45) DEFAULT NULL
+  `DBname` varchar(45) DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `metaStore`
 --
 
-INSERT INTO `metaStore` (`ID`, `DBtype`, `IPAddress`, `port`, `username`, `password`, `DBname`) VALUES
-(1, 'MySQL', 'localhost', 3306, 'root', 'hao', 'group1');
+INSERT INTO `metaStore` (`ID`, `DBtype`, `IPAddress`, `port`, `username`, `password`, `DBname`, `title`, `description`) VALUES
+(1, 'MySQL', 'localhost', 3306, 'root', 'hao', 'group1', 'metastore', 'store metastores');
 
 --
 -- Indexes for dumped tables

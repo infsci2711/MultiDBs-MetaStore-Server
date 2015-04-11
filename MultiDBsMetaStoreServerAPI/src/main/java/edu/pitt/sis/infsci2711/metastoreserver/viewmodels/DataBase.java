@@ -1,13 +1,14 @@
-package edu.pitt.sis.infsci2711.metastoreserver;
+package edu.pitt.sis.infsci2711.metastoreserver.viewmodels;
 
-public class metaStoreDatabaseModel {
+public class DataBase {
+
 	private String database;
 	
-	public metaStoreDatabaseModel(){
+	public DataBase(){
 		
 	}
 	
-	public metaStoreDatabaseModel( final String database){
+	public DataBase( final String database){
 		this.setDatabase(database);
 	}
 	
@@ -17,4 +18,6 @@ public class metaStoreDatabaseModel {
 	public void setDatabase(String database) {
 		this.database = database;
 	}
-}
+		
+	}
+

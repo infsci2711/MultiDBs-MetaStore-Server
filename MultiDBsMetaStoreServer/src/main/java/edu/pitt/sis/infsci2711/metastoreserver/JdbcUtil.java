@@ -11,7 +11,7 @@ import java.sql.SQLException;
 		
 		public static final int DEFAULT_PORT = 3306;
 		
-		public static final String DEFAULT_USER = "root "; //CHANGE TO YOUR MYSQL USER NAME
+		public static final String DEFAULT_USER = "root"; //CHANGE TO YOUR MYSQL USER NAME
 		
 		public static final String DEFAULT_PASSWOD = "hao"; // CHANGE TO YOUR MYSQL PASSWORD
 		
