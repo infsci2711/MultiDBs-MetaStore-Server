@@ -10,6 +10,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -111,15 +115,14 @@ public class DatasourcesRestService {
 			
 			//TODO: Send requests to Presto & keyword groups
 			
-			
-//			Client client = ClientBuilder.newClient();
-//			WebTarget target = client.target("http://localhost:9998").path("resource");
+			Client client = ClientBuilder.newClient();
+			WebTarget target = client.target("http://54.174.80.167:7654").path("Catalog/add");
 			 
 			 
-//			MyJAXBBean bean =
-//			target.request(MediaType.APPLICATION_JSON_TYPE)
-//			    .post(Entity.entity(addedDatasource,MediaType.APPLICATION_JSON),
-//			        MyJAXBBean.class);
+			DatasourceViewModel dataVM =
+			target.request(MediaType.APPLICATION_JSON_TYPE)
+			    .post(Entity.entity(addedDatasource,MediaType.APPLICATION_JSON),
+			    		DatasourceViewModel.class);
 			
 			return Response.status(200).entity(addedDatasource).build();
 			
