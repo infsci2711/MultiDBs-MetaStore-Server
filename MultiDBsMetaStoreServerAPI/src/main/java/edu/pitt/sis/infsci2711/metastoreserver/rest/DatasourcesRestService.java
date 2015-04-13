@@ -17,6 +17,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.JAXB;
 
 import edu.pitt.sis.infsci2711.metastoreserver.business.DatasourcesService;
 import edu.pitt.sis.infsci2711.metastoreserver.models.ColumnModel;
@@ -116,13 +117,15 @@ public class DatasourcesRestService {
 			//TODO: Send requests to Presto & keyword groups
 			
 			Client client = ClientBuilder.newClient();
-			WebTarget target = client.target("http://54.174.80.167:7654").path("Catalog/add");
-			 
-			 
-			DatasourceViewModel dataVM =
-			target.request(MediaType.APPLICATION_JSON_TYPE)
+			WebTarget targetPresto = client.target("http://54.174.80.167:7654").path("Catalog/add");
+			DatasourceViewModel dataVMPresto = targetPresto.request(MediaType.APPLICATION_JSON_TYPE)
 			    .post(Entity.entity(addedDatasource,MediaType.APPLICATION_JSON),
 			    		DatasourceViewModel.class);
+			
+			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654").path("Index");
+			DatasourceViewModel dataVMKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON_TYPE)
+				    .post(Entity.entity(addedDatasource,MediaType.APPLICATION_JSON),
+				    		DatasourceViewModel.class);
 			
 			return Response.status(200).entity(addedDatasource).build();
 			
