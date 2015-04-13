@@ -57,7 +57,7 @@ public class DatasourcesRestService {
 	/**
 	 * 
 	 * @param allDatasources
-	 * @return
+	 * @return Json object containing datasource with tables and columns
 	 * @throws SQLException
 	 * @throws Exception
 	 */

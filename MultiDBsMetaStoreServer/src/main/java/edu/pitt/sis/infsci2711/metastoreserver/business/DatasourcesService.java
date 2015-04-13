@@ -28,7 +28,7 @@ public class DatasourcesService {
 	}
 	
 	/**
-	 * 
+	 * get all datasources
 	 * @return
 	 * @throws SQLException
 	 * @throws Exception
@@ -40,7 +40,7 @@ public class DatasourcesService {
 	}
 	
 	/**
-	 * 
+	 * find all table in a certain database
 	 * @param DBname
 	 * @return
 	 * @throws SQLException
@@ -53,7 +53,7 @@ public class DatasourcesService {
 	}
 	
 	/**
-	 * 
+	 * find all columns in a table
 	 * @param TBname
 	 * @param DBname
 	 * @return
