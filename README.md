@@ -6,7 +6,9 @@ Description
 The goal of this project is to keep information (source description in terms of virtual data integration approach) about the available data stores.
  
 The information should include all useful aspects, e.g. url, port, username, password, database name, what protocol to use to connect, what connection format is, any other information about the datastore. The information should be collected in two ways:
+
 1. Ask user to input whatever they can/need to input.
+
 2. User info that user input (e.g. connection info), you need to connect to the data store and collect more metadata. E.g. table names, their schemas, some data statistics, e.g. how much data there is, etc.
 
 REST service instruction
