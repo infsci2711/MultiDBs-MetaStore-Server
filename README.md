@@ -1,7 +1,7 @@
 # Multi-database-metastore-Server
 Multi-database metastore Server
 
-1) For the show all datasources ids with dbNames, the API is:
+1) To show all datasources ids with dbNames, the API is:
 Method: GET
 http://54.152.26.131:7654/datasources/ids
  
