@@ -34,44 +34,40 @@
         <h1>
 <a id="multi-database-metastore-server" class="anchor" href="#multi-database-metastore-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-database-metastore-Server</h1>
 
-<p>Multi-database metastore Server
-	<h3>Multi-database metastore Server</h3>
+<h3>Description</h3>
 
-Description
+<p>The goal of this project is to keep information (source description in terms of virtual data integration approach) about the available data stores.
 
-The goal of this project is to keep information (source description in terms of virtual data integration approach) about the available data stores.
+The information should include all useful aspects, e.g. url, port, username, password, database name, what protocol to use to connect, what connection format is, any other information about the datastore. The information should be collected in two ways</p>
+<p>Ask user to input whatever they can/need to input.</p>
 
-The information should include all useful aspects, e.g. url, port, username, password, database name, what protocol to use to connect, what connection format is, any other information about the datastore. The information should be collected in two ways:
+<p>User info that user input (e.g. connection info), you need to connect to the data store and collect more metadata. E.g. table names, their schemas, some data statistics, e.g. how much data there is, etc.</p>
 
-Ask user to input whatever they can/need to input.
+<h3>REST service instruction</h3>
 
-User info that user input (e.g. connection info), you need to connect to the data store and collect more metadata. E.g. table names, their schemas, some data statistics, e.g. how much data there is, etc.
+<p>1) To show all datasources ids with dbNames, the API is: <br>Method: GET <br>http://54.152.26.131:7654/datasources/ids
 
-REST service instruction
+<br>and the result should be the JSON array: [{id:..., dbName:""},...]</p>
 
-1) To show all datasources ids with dbNames, the API is: Method: GET http://54.152.26.131:7654/datasources/ids
+<p>2) To get all tables names for a given datasource API is as: <br>Method: GET <br>http://54.152.26.131:7654/datasources/{id}/tables<br>
 
-and the result should be the JSON array: [{id:..., dbName:""},...]
+the {id} is the parameter that is for given id of the datasource, you return the list of table names ["", "", ...]</p>
 
-2) To get all tables names for a given datasource API is as: Method: GET http://54.152.26.131:7654/datasources/{id}/tables
+<p>3) Get list of columns for given datasource id and table name, the API is: <br>Method: GET <br>http://54.152.26.131:7654/datasources/{id}/{tableName}/columns
 
-the {id} is the parameter that is for given id of the datasource, you return the list of table names ["", "", ...]
+the {id} and {tableName} are the parameters the result should be JSON array of column names ["", "", ...]</p>
 
-3) Get list of columns for given datasource id and table name, the API is: Method: GET http://54.152.26.131:7654/datasources/{id}/{tableName}/columns
+<p>4) Get just one datasource info by datasource id. The API is as: <br>Method: GET <br>http://54.152.26.131:7654/datasources/{id}<br>
 
-the {id} and {tableName} are the parameters the result should be JSON array of column names ["", "", ...]
+{id} is the parameter<br>
 
-4) Get just one datasource info by datasource id. The API is as: Method: GET http://54.152.26.131:7654/datasources/{id}
+JSON: { "id": 1, "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL", "tables": [ { "tableName" : "test", "columns": [ { "columnName": "field" } ] } ] }</p>
 
-{id} is the parameter
+<p>5) To register a new datasource the API is: <br>Method: PUT <br>http://54.152.26.131:7654/datasources/add
 
-JSON: { "id": 1, "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL", "tables": [ { "tableName" : "test", "columns": [ { "columnName": "field" } ] } ] }
+<br>JSON: { "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL"}</p>
 
-5) To register a new datasource the API is: Method: PUT http://54.152.26.131:7654/datasources/add
-
-JSON: { "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL"}
-
-6) Get all datasources info. The API is as: Method: GET http://54.152.26.131:7654/datasources
+<p>6) Get all datasources info. The API is as: <br>Method: GET <br>http://54.152.26.131:7654/datasources
 </p>
 
       </section>
