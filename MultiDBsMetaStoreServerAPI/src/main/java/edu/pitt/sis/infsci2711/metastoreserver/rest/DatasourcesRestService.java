@@ -23,6 +23,7 @@ import edu.pitt.sis.infsci2711.metastoreserver.business.DatasourcesService;
 import edu.pitt.sis.infsci2711.metastoreserver.models.ColumnModel;
 import edu.pitt.sis.infsci2711.metastoreserver.models.DatasourceDBModel;
 import edu.pitt.sis.infsci2711.metastoreserver.models.TableModel;
+import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.CatalogViewModel;
 import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.ColumnViewModel;
 import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.DatasourceIdsViewModel;
 import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.DatasourceViewModel;
@@ -104,28 +105,58 @@ public class DatasourcesRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addDatasource(final DatasourceViewModel datasource) {
 		
-		DatasourcesService metaStoreService = new DatasourcesService();
+		DatasourcesService datasourcesService = new DatasourcesService();
 		
 		DatasourceDBModel dbModel = convertToDbModel(datasource);
 		
 		try {
-			DatasourceDBModel addedDbModel = metaStoreService.add(dbModel);
+			DatasourceDBModel addedDbModel = datasourcesService.add(dbModel);
 			
 			
 			DatasourceViewModel addedDatasource = convertDbToViewModel(addedDbModel);
 			
-			//TODO: Send requests to Presto & keyword groups
+			//TODO: Send requests to Presto groups
+			
+			CatalogViewModel prestoCatalog = new CatalogViewModel((addedDatasource.getId()+""),
+					addedDatasource.getIpAddress(),addedDatasource.getPort()+"",addedDatasource.getDbType(),
+					addedDatasource.getUsername(),addedDatasource.getPassword(),addedDatasource.getDbName());
 			
 			Client client = ClientBuilder.newClient();
 			WebTarget targetPresto = client.target("http://54.174.80.167:7654").path("Catalog/add");
-			DatasourceViewModel dataVMPresto = targetPresto.request(MediaType.APPLICATION_JSON_TYPE)
-			    .post(Entity.entity(addedDatasource,MediaType.APPLICATION_JSON),
-			    		DatasourceViewModel.class);
+			Response responsePresto = targetPresto.request(MediaType.APPLICATION_JSON)
+		             .put(Entity.entity(prestoCatalog, MediaType.APPLICATION_JSON),Response.class);
+			
+//			CatalogViewModel dataVMPresto = targetPresto.request(MediaType.APPLICATION_JSON_TYPE)
+//			    .put(Entity.entity(prestoCatalog,MediaType.APPLICATION_JSON),
+//			    		CatalogViewModel.class);
+			
+			//TODO: Send requests to keyword groups
+			DatasourceDBModel dbDatasource = datasourcesService.findById(addedDatasource.getId());
+			DatasourceViewModel dbDatasourceVM = convertDbToViewModel(dbDatasource);
+			List<TableModel> tables = datasourcesService.findTables(dbDatasourceVM.getId());
+			
+			List<TableViewModel> tablesVM = new ArrayList<TableViewModel>();
+			
+			for (TableModel table : tables) {
+				List<ColumnModel> columnsDbModel = datasourcesService.findSchema(dbDatasource.getId(), table.getTableName());
+				
+				List<ColumnViewModel> columnsVM = new ArrayList<ColumnViewModel>();
+				
+				for (ColumnModel columnDbModel : columnsDbModel) {
+					columnsVM.add(new ColumnViewModel(columnDbModel.getTBfield()));
+				}
+				
+				TableViewModel tableVM = new TableViewModel(table.getTableName(), columnsVM);
+				
+				tablesVM.add(tableVM);
+			}
+			
+			dbDatasourceVM.setTables(tablesVM);
 			
 			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654").path("Index");
-			DatasourceViewModel dataVMKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON_TYPE)
-				    .post(Entity.entity(addedDatasource,MediaType.APPLICATION_JSON),
-				    		DatasourceViewModel.class);
+			
+			Response responseKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON)
+		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
 			
 			return Response.status(200).entity(addedDatasource).build();
 			
