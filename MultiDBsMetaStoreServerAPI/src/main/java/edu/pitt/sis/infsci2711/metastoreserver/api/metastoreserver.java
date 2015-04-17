@@ -1,14 +1,3 @@
-//package edu.pitt.sis.infsci2711.metastoreserver.api;
-//
-//import edu.pitt.sis.infsci2711.multidbs.utils.JerseyJettyServer;
-//
-//public class MetaStoreAPIServer {
-//	
-//	public static void main(final String[] args) throws Exception {
-//		JerseyJettyServer server = new JerseyJettyServer(7654, "edu.pitt.sis.infsci2711.metastoreserver.rest");
-//		server.start();
-//	}
-//}
 package edu.pitt.sis.infsci2711.metastoreserver.api;
 
 import java.io.File;
@@ -16,7 +5,7 @@ import java.io.File;
 import edu.pitt.sis.infsci2711.multidbs.utils.JerseyJettyServer;
 import edu.pitt.sis.infsci2711.multidbs.utils.PropertiesManager;
 
-public class MetaStoreAPIServer {
+public class metastoreserver {
 	
 	private final static String PROPERTY_PORT = "port";
 	private final static int DEFAULT_PORT = 7654;
