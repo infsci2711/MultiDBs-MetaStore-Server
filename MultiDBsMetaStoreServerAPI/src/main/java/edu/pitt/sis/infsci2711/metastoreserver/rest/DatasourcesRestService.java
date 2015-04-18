@@ -158,6 +158,11 @@ public class DatasourcesRestService {
 			Response responseKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON)
 		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
 			
+			WebTarget targetGeyWord = client.target("http://54.174.121.1967654").path("DataSource/add");
+			
+			Response responseGeyWord = targetGeyWord.request(MediaType.APPLICATION_JSON)
+		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
+			
 			return Response.status(200).entity(addedDatasource).build();
 			
 		} catch (Exception e) {
