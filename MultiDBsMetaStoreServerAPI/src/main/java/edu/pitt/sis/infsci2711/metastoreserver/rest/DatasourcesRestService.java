@@ -153,7 +153,7 @@ public class DatasourcesRestService {
 			
 			dbDatasourceVM.setTables(tablesVM);
 			
-			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654").path("Index");
+			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654/").path("Index/");
 			
 			Response responseKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON)
 		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
