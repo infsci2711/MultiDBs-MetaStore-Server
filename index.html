@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Multidbs-metastore-server by infsci2711</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -51,50 +59,50 @@ where YOURUSERNAME is your user name that you recieve in email and the IP is the
 Then enter your password (note no characters will be printed while you are entering your password) and you should be logged into the server.<br>
 </p><p>
 2. Install the essentials:<br>
-sudo apt-get install maven<br>
+<code class="language-xml" data-lang="xml">sudo apt-get install maven<br>
 sudo apt-get install git<br>
 sudo apt-get install openjdk-7-jdk<br>
 sudo apt-get install mysql-server<br>
-sudo apt-get install nginx<br>
+sudo apt-get install nginx<br></code>
 </p><p>
 3. Create folders:<br>
-cd /opt<br>
+<code class="language-xml" data-lang="xml">cd /opt<br>
 sudo mkdir project<br>
-cd project<br>
+cd project<br></code>
 </p><p>
 4. Clone projects from Github<br>
-
+<code class="language-xml" data-lang="xml">
 sudo git clone https://github.com/infsci2711/MultiDBs-Utils.git<br>
 sudo git clone https://github.com/infsci2711/MultiDBs-MetaStore-Server<br>
-sudo git clone https://github.com/infsci2711/MultiDBs-MetaStore-WebClient<br>
+sudo git clone https://github.com/infsci2711/MultiDBs-MetaStore-WebClient<br></code>
 
 </p><p>
 5. Create symlink to the client code in the project folder<br>
-
+<code class="language-xml" data-lang="xml">
 cd /usr/share/nginx <br>
 sudo rm -R html <br>
-sudo ln -sv /opt/project/MultiDBs-MetaStore-WebClient html<br>
+sudo ln -sv /opt/project/MultiDBs-MetaStore-WebClient html<br></code>
 </p><p>
 6. Setup database<br>
 Run the startup.sh file under “MultiDBs-MetaStore-Server” directory<br>
 The startup.sh should contain the following codes:<br>
-#!/bin/bash<br>
-mysql -u [username] –p[password] < metastoredb.sql<br>
+<code class="language-xml" data-lang="xml">#!/bin/bash<br>
+mysql -u [username] –p[password] < metastoredb.sql<br></code>
 
 Replace [username] and [password] with your own username and password of your MySQL database, then do <br>
-sh startup.sh<br>
+<code class="language-xml" data-lang="xml">sh startup.sh<br></code>
 in terminal<br>
 </p><p>
 7.  build the project by maven install<br>
 To build the project, run mvn instal like this:<br>
-cd MultiDBs-Utils <br>
+<code class="language-xml" data-lang="xml">cd MultiDBs-Utils <br>
 mvn install<br>
 cd MultiDBs-MetaStore-Server <br>
-mvn install<br>
+mvn install<br></code>
 </p><p>
 8. Start the server:<br>
-cd /opt/project/MultiDBs-MetaStore-Server/MultiDBsMetaStoreServerAPI/target<br>
-nohup java -jar multidbsmetastoreserverapi-0.1-SNAPSHOT.jar > log.out 2> error.log < /dev/null &	<br>
+<code class="language-xml" data-lang="xml">cd /opt/project/MultiDBs-MetaStore-Server/MultiDBsMetaStoreServerAPI/target<br>
+nohup java -jar multidbsmetastoreserverapi-0.1-SNAPSHOT.jar > log.out 2> error.log < /dev/null &	<br></code>
 
 
 
