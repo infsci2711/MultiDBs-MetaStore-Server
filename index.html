@@ -33,6 +33,15 @@
       <section>
         <h1>
 <a id="multi-database-metastore-server" class="anchor" href="#multi-database-metastore-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-database-metastore-Server</h1>
+
+<h3>Description</h3>
+
+<p>The goal of this project is to keep information (source description in terms of virtual data integration approach) about the available data stores.
+
+The information should include all useful aspects, e.g. url, port, username, password, database name, what protocol to use to connect, what connection format is, any other information about the datastore. The information should be collected in two ways:</p>
+<p>1. Ask user to input whatever they can/need to input.</p>
+
+<p>2. User info that user input (e.g. connection info), you need to connect to the data store and collect more metadata. E.g. table names, their schemas, some data statistics, e.g. how much data there is, etc.</p>
 <h3>Project Setup </h3>
 <p>
 1. login to the server
@@ -90,15 +99,6 @@ nohup java -jar multidbsmetastoreserverapi-0.1-SNAPSHOT.jar > log.out 2> error.l
 
 
 </p>
-<h3>Description</h3>
-
-<p>The goal of this project is to keep information (source description in terms of virtual data integration approach) about the available data stores.
-
-The information should include all useful aspects, e.g. url, port, username, password, database name, what protocol to use to connect, what connection format is, any other information about the datastore. The information should be collected in two ways:</p>
-<p>1. Ask user to input whatever they can/need to input.</p>
-
-<p>2. User info that user input (e.g. connection info), you need to connect to the data store and collect more metadata. E.g. table names, their schemas, some data statistics, e.g. how much data there is, etc.</p>
-
 <h3>REST service instruction</h3>
 
 <p>1) To show all datasources ids with dbNames, the API is: <br>Method: GET <br>http://54.152.26.131:7654/datasources/ids
