@@ -22,6 +22,7 @@ ENV M2 $M2_HOME/bin
 
 ENV PATH $M2:$PATH
 
+
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
