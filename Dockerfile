@@ -39,9 +39,7 @@ COPY metastoredb.sql /home/metastore/metastoredb.sql
 
 RUN chmod -R 777 /home/metastore
 
-# ENTRYPOINT ["/home/metastore/entrypoint.sh"]
-
-
+ENTRYPOINT ["/home/metastore/entrypoint.sh"]
 
 EXPOSE 22
 
