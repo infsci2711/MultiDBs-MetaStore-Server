@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
     git \
     mysql-server
 
+RUN echo ${MYSQL_PASSWORD}
+RUN echo $MYSQL_PASSWORD
+
 
 RUN mkdir -p /var/run/sshd
 
