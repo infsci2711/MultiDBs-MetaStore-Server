@@ -17,7 +17,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.JAXB;
 
 import edu.pitt.sis.infsci2711.metastoreserver.business.DatasourcesService;
 import edu.pitt.sis.infsci2711.metastoreserver.models.ColumnModel;
@@ -28,6 +27,8 @@ import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.ColumnViewModel;
 import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.DatasourceIdsViewModel;
 import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.DatasourceViewModel;
 import edu.pitt.sis.infsci2711.metastoreserver.viewmodels.TableViewModel;
+import edu.pitt.sis.infsci2711.multidbs.utils.JerseyClientUtil;
+import edu.pitt.sis.infsci2711.multidbs.utils.PropertiesManager;
 
 @Path("datasources/")
 public class DatasourcesRestService {
@@ -63,7 +64,7 @@ public class DatasourcesRestService {
 	 * @throws Exception
 	 */
 	private List<DatasourceViewModel> fillDatasourceWithTablesAndColumns(
-			List<DatasourceDBModel> allDatasources) throws SQLException, Exception {
+			final List<DatasourceDBModel> allDatasources) throws SQLException, Exception {
 		
 		List<DatasourceViewModel> result = new ArrayList<DatasourceViewModel>();
 		
@@ -153,15 +154,23 @@ public class DatasourcesRestService {
 			
 			dbDatasourceVM.setTables(tablesVM);
 			
-			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654/").path("Index/");
+			// Tell relational keyword search that new datasource was added.
+			Response responseKeyWordR = JerseyClientUtil.doPost(PropertiesManager.getInstance().getStringProperty("keywordsearchr.rest.base"), 
+					PropertiesManager.getInstance().getStringProperty("keywordsearchr.rest.newSource"), dbDatasourceVM);
 			
-			Response responseKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON)
-		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
+			// Tell graph keyword search that new datasource was added.
+			Response responseKeyWordG = JerseyClientUtil.doPost(PropertiesManager.getInstance().getStringProperty("keywordsearchg.rest.base"), 
+					PropertiesManager.getInstance().getStringProperty("keywordsearchg.rest.newSource"), dbDatasourceVM);
 			
-			WebTarget targetGeyWord = client.target("http://54.174.121.196:7654").path("DataSource/add");
+//			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654/").path("Index/");
 			
-			Response responseGeyWord = targetGeyWord.request(MediaType.APPLICATION_JSON)
-		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
+//			Response responseKeyWord = targetKeyWord.request(MediaType.APPLICATION_JSON)
+//		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
+			
+//			WebTarget targetGeyWord = client.target("http://54.174.121.196:7654").path("DataSource/add");
+//			
+//			Response responseGeyWord = targetGeyWord.request(MediaType.APPLICATION_JSON)
+//		             .put(Entity.entity(dbDatasourceVM, MediaType.APPLICATION_JSON),Response.class);
 			
 			return Response.status(200).entity(addedDatasource).build();
 			
@@ -240,7 +249,7 @@ public class DatasourcesRestService {
 	@Path("{id}/tables")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response findTables(@PathParam("id")int id) {
+	public Response findTables(@PathParam("id") final int id) {
 		
 		DatasourcesService metaStoreService = new DatasourcesService();
 		
@@ -262,7 +271,7 @@ public class DatasourcesRestService {
 	@Path("{id}/{tableName}/columns")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response findTables(@PathParam("id")int id, @PathParam("tableName")String tableName) {
+	public Response findTables(@PathParam("id") final int id, @PathParam("tableName") final String tableName) {
 		
 		DatasourcesService metaStoreService = new DatasourcesService();
 		
@@ -282,7 +291,7 @@ public class DatasourcesRestService {
 	}
 	
 	private List<DatasourceIdsViewModel> convertDbToViewModel(
-			List<DatasourceDBModel> allDatasources) {
+			final List<DatasourceDBModel> allDatasources) {
 		List<DatasourceIdsViewModel> result = new ArrayList<DatasourceIdsViewModel>();
 		
 		for(DatasourceDBModel datasource : allDatasources) {
@@ -293,13 +302,13 @@ public class DatasourcesRestService {
 	}
 
 	private DatasourceViewModel convertDbToViewModel(
-			DatasourceDBModel datasourceDbModel) {
+			final DatasourceDBModel datasourceDbModel) {
 		return new DatasourceViewModel(datasourceDbModel.getId(), datasourceDbModel.getDbType(), datasourceDbModel.getIpAddress(), datasourceDbModel.getPort(),
 				datasourceDbModel.getUsername(), datasourceDbModel.getPassword(), datasourceDbModel.getDbName(),
 				datasourceDbModel.getTitle(), datasourceDbModel.getDescription());
 	}
 
-	private DatasourceDBModel convertToDbModel(DatasourceViewModel datasource) {
+	private DatasourceDBModel convertToDbModel(final DatasourceViewModel datasource) {
 		return new DatasourceDBModel(datasource.getDbType(), datasource.getIpAddress(), datasource.getPort(),
 				datasource.getUsername(), datasource.getPassword(), datasource.getDbName(),
 				datasource.getTitle(), datasource.getDescription());
