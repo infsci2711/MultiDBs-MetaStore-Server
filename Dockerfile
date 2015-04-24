@@ -28,10 +28,15 @@ ENV M2 $M2_HOME/bin
 
 ENV PATH $M2:$PATH
 
+RUN useradd -d /home/metastore metastore
+RUN mkdir -p /home/metastore
+RUN chown metastore /home/metastore
 
-COPY docker-entrypoint.sh /entrypoint.sh
-COPY metastoredb.sql /metastoredb.sql
-ENTRYPOINT ["/entrypoint.sh"]
+RUN echo "metastore:metastore" | chpasswd
+
+COPY docker-entrypoint.sh /home/metastore/entrypoint.sh
+COPY metastoredb.sql /home/metastore/metastoredb.sql
+ENTRYPOINT ["/home/metastore/entrypoint.sh"]
 
 EXPOSE 22
 
