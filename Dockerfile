@@ -1,10 +1,17 @@
 FROM ubuntu:14.04
 MAINTAINER Evgeny Karataev <Karataev.Evgeny@gmail.com>
 
+RUN echo mysql-server mysql-server/root_password password strangehat | sudo debconf-set-selections
+RUN echo mysql-server mysql-server/root_password_again password strangehat | sudo debconf-set-selections
+
 RUN apt-get update && apt-get install -y \
     openssh-server \
     openjdk-7-jdk \
-    curl 
+    curl \
+    git \
+    nginx \
+    mysql-server
+
 
 RUN mkdir -p /var/run/sshd
 
