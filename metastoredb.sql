@@ -52,6 +52,12 @@ CREATE TABLE `datasources` (
 ALTER TABLE `datasources`
  ADD PRIMARY KEY (`ID`);
 
+CREATE USER 'metastoreUser'@'localhost' IDENTIFIED BY 'metastoreUser';
+grant all privileges on `metastore`.* to 'metastoreUser'@'localhost';
+
+CREATE USER 'metastoreUser'@'%' IDENTIFIED BY 'metastoreUser';
+grant all privileges on `metastore`.* to 'metastoreUser'@'%';
+
 --
 -- AUTO_INCREMENT for dumped tables
 --
