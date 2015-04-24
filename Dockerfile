@@ -38,7 +38,7 @@ RUN chmod -R 777 /home/metastore
 
 COPY docker-entrypoint.sh /home/metastore/entrypoint.sh
 COPY metastoredb.sql /home/metastore/metastoredb.sql
-ENTRYPOINT ["/home/metastore/entrypoint.sh"]
+# ENTRYPOINT ["/home/metastore/entrypoint.sh"]
 
 EXPOSE 22
 
