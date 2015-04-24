@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+echo "installing mysql"
+
+echo mysql-server mysql-server/root_password password $MYSQL_PASSWORD | debconf-set-selections
+echo mysql-server mysql-server/root_password_again password $MYSQL_PASSWORD | debconf-set-selections
+
+apt-get install -y mysql-server
+
 echo "starting mysql"
 
 service mysql start

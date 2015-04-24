@@ -1,21 +1,11 @@
 FROM ubuntu:14.04
 MAINTAINER Evgeny Karataev <Karataev.Evgeny@gmail.com>
 
-RUN echo hi there
-
-RUN echo mysql-server mysql-server/root_password password ${MYSQL_PASSWORD} | debconf-set-selections
-RUN echo mysql-server mysql-server/root_password_again password ${MYSQL_PASSWORD} | debconf-set-selections
-
 RUN apt-get update && apt-get install -y \
     openssh-server \
     openjdk-7-jdk \
     curl \
-    git \
-    mysql-server
-
-RUN echo ${MYSQL_PASSWORD}
-RUN echo $MYSQL_PASSWORD
-
+    git
 
 RUN mkdir -p /var/run/sshd
 
