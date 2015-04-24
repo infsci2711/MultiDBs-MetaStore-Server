@@ -7,6 +7,6 @@ service mysql start
 
 #echo "running sql script"
 
-mysql -u root –pstrangehat < metastoredb.sql
+mysql -u root –pstrangehat < /home/metastore/metastoredb.sql
 
 exec "$@"
