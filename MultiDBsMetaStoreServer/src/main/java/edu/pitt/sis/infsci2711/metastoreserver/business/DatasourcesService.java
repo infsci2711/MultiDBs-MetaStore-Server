@@ -4,13 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.pitt.sis.infsci2711.metastoreserver.dao.DatasourcesDAO;
-import edu.pitt.sis.infsci2711.metastoreserver.dao.metaStoreDBDAO;
 import edu.pitt.sis.infsci2711.metastoreserver.dao.SchemaDAO;
 import edu.pitt.sis.infsci2711.metastoreserver.dao.TableDAO;
-import edu.pitt.sis.infsci2711.metastoreserver.models.DatasourceDBModel;
-import edu.pitt.sis.infsci2711.metastoreserver.models.metaStoreDatabaseModel;
+import edu.pitt.sis.infsci2711.metastoreserver.dao.metaStoreDBDAO;
 import edu.pitt.sis.infsci2711.metastoreserver.models.ColumnModel;
+import edu.pitt.sis.infsci2711.metastoreserver.models.DatasourceDBModel;
 import edu.pitt.sis.infsci2711.metastoreserver.models.TableModel;
+import edu.pitt.sis.infsci2711.metastoreserver.models.metaStoreDatabaseModel;
 
 public class DatasourcesService {
 
@@ -21,10 +21,10 @@ public class DatasourcesService {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public DatasourceDBModel add(final DatasourceDBModel metaStore) throws SQLException, Exception {
-		DatasourcesDAO.save(metaStore);
+	public DatasourceDBModel add(final DatasourceDBModel datasource) throws SQLException, Exception {
+		DatasourcesDAO.save(datasource);
 		
-		return metaStore;
+		return datasource;
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class DatasourcesService {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public List<TableModel> findTables(int id) throws SQLException, Exception {
+	public List<TableModel> findTables(final int id) throws SQLException, Exception {
 		List<TableModel> result = TableDAO.findTables(id);
 		
 		return result;
@@ -60,7 +60,7 @@ public class DatasourcesService {
 	 * @throws SQLException
 	 * @throws Exception
 	 */
-	public List<ColumnModel> findSchema(int datasourceId, final String tableName) throws SQLException, Exception {
+	public List<ColumnModel> findSchema(final int datasourceId, final String tableName) throws SQLException, Exception {
 		List<ColumnModel> result = SchemaDAO.findSchema(datasourceId, tableName);
 		
 		return result;
@@ -79,7 +79,7 @@ public class DatasourcesService {
 	}
 	
 	// check DBname
-	public boolean checkDBname(String DBname)throws SQLException, Exception {
+	public boolean checkDBname(final String DBname)throws SQLException, Exception {
 		
 		return DatasourcesDAO.checkByDBname(DBname) ;
 	}

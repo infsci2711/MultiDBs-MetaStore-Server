@@ -15,7 +15,7 @@ public class DatasourcesDAO {
 	public static List<DatasourceDBModel> findAll() throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = "SELECT * FROM metaStore";
+			String sql = "SELECT * FROM datasources";
 			try (Statement statement = connection.createStatement()){
 				
 				ResultSet resultSet = statement.executeQuery(sql);
@@ -38,7 +38,7 @@ public class DatasourcesDAO {
 	public static DatasourceDBModel findById(final int id) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = "SELECT * FROM metaStore where id = " + id;
+			String sql = "SELECT * FROM datasources where id = " + id;
 			try (Statement statement = connection.createStatement()){
 				
 				ResultSet resultSet = statement.executeQuery(sql);
@@ -56,14 +56,14 @@ public class DatasourcesDAO {
 		
 	}
 	
-	public static int save(final DatasourceDBModel metaStore) throws SQLException, Exception {
+	public static int save(final DatasourceDBModel datasource) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = String.format("INSERT INTO metaStore (DBtype, IPAddress, port, username, password, DBname, title, description) "
+			String sql = String.format("INSERT INTO datasources (DBtype, IPAddress, port, username, password, DBname, title, description) "
 					+ "VALUES ('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s')", 
-					metaStore.getDbType(), metaStore.getIpAddress(), 
-					metaStore.getPort(), metaStore.getUsername(), 
-					metaStore.getPassword(), metaStore.getDbName(), metaStore.getTitle(), metaStore.getDescription());
+					datasource.getDbType(), datasource.getIpAddress(), 
+					datasource.getPort(), datasource.getUsername(), 
+					datasource.getPassword(), datasource.getDbName(), datasource.getTitle(), datasource.getDescription());
 			
 			try (Statement statement = connection.createStatement()){
 				
@@ -71,7 +71,7 @@ public class DatasourcesDAO {
 				
 				ResultSet rs = statement.getGeneratedKeys();
 				if (rs.next()){
-					metaStore.setId(rs.getInt(1));
+					datasource.setId(rs.getInt(1));
 				}
 				
 				return res;
@@ -83,7 +83,7 @@ public class DatasourcesDAO {
     public static DatasourceDBModel findByDBname(final String  DBname) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
-			String sql = "SELECT * FROM metaStore where DBname = '" + DBname +"'";
+			String sql = "SELECT * FROM datasources where DBname = '" + DBname +"'";
 			try (Statement statement = connection.createStatement()){
 				
 				ResultSet resultSet = statement.executeQuery(sql);
@@ -103,7 +103,7 @@ public class DatasourcesDAO {
     public static boolean checkByDBname(final String  DBname) throws SQLException, Exception {
 		
  		try (Connection connection = JdbcUtil.getConnection()) {
- 			String sql = "SELECT * FROM metaStore where DBname = '" + DBname +"'";
+ 			String sql = "SELECT * FROM datasources where DBname = '" + DBname +"'";
  			try (Statement statement = connection.createStatement()){
  				
  				ResultSet resultSet = statement.executeQuery(sql);
