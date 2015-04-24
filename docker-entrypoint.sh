@@ -19,7 +19,7 @@ mysql -uroot -p$MYSQL_PASSWORD < /home/metastore/metastoredb.sql
 echo "creating folder for servers source code"
 
 cd /opt
-mkdir project
+mkdir -p project
 cd project
 
 echo "cloning two git repos"
@@ -40,7 +40,7 @@ mvn install
 echo "creating folder for deployed code"
 
 cd /opt/project
-mkdir deployed
+mkdir -p deployed
 
 echo "copying jar and config file to deploed folder"
 
