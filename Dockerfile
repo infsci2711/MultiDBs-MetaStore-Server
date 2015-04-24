@@ -34,6 +34,8 @@ RUN chown metastore /home/metastore
 
 RUN echo "metastore:metastore" | chpasswd
 
+RUN chmod -R 777 /home/metastore
+
 COPY docker-entrypoint.sh /home/metastore/entrypoint.sh
 COPY metastoredb.sql /home/metastore/metastoredb.sql
 ENTRYPOINT ["/home/metastore/entrypoint.sh"]
