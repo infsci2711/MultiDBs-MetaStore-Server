@@ -49,6 +49,6 @@ cp /opt/project/MultiDBs-MetaStore-Server/MultiDBsMetaStoreServerAPI/src/main/re
 
 echo "starting java server"
 
-nohup java -jar  /opt/project/deployed/multidbsmetastoreserverapi-0.1-SNAPSHOT.jar /opt/project/deployed/config.properties > log.out 2> error.log < /dev/null &
+nohup java -jar  /opt/project/deployed/multidbsmetastoreserverapi-0.1-SNAPSHOT.jar /opt/project/deployed/config.properties > /opt/project/deployed/log.out 2> /opt/project/deployed/error.log < /dev/null &
 
 exec "$@"
