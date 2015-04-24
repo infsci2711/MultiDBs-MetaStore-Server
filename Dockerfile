@@ -32,4 +32,6 @@ ENV PATH $M2:$PATH
 
 EXPOSE 22
 
+RUN service mysql start
+
 CMD ["/usr/sbin/sshd", "-D"]
