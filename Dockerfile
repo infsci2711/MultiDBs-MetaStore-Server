@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y \
     openjdk-7-jdk \
     curl \
     git \
-    nginx \
     mysql-server
 
 
@@ -30,8 +29,10 @@ ENV M2 $M2_HOME/bin
 ENV PATH $M2:$PATH
 
 
-EXPOSE 22
+COPY docker-entrypoint.sh /entrypoint.sh
+COPY metastoredb.sql /metastoredb.sql
+ENTRYPOINT ["/entrypoint.sh"]
 
-RUN service mysql start
+EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
