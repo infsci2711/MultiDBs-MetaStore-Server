@@ -1,8 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Evgeny Karataev <Karataev.Evgeny@gmail.com>
 
-RUN echo mysql-server mysql-server/root_password password strangehat | debconf-set-selections
-RUN echo mysql-server mysql-server/root_password_again password strangehat | debconf-set-selections
+RUN echo mysql-server mysql-server/root_password password $MYSQL_PASSWORD | debconf-set-selections
+RUN echo mysql-server mysql-server/root_password_again password $MYSQL_PASSWORD | debconf-set-selections
 
 RUN apt-get update && apt-get install -y \
     openssh-server \
