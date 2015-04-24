@@ -10,10 +10,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -122,16 +118,15 @@ public class DatasourcesRestService {
 					addedDatasource.getIpAddress(),addedDatasource.getPort()+"",addedDatasource.getDbType(),
 					addedDatasource.getUsername(),addedDatasource.getPassword(),addedDatasource.getDbName());
 			
-			Client client = ClientBuilder.newClient();
-			WebTarget targetPresto = client.target("http://54.174.80.167:7654").path("Catalog/add");
-			Response responsePresto = targetPresto.request(MediaType.APPLICATION_JSON)
-		             .put(Entity.entity(prestoCatalog, MediaType.APPLICATION_JSON),Response.class);
+//			Client client = ClientBuilder.newClient();
+//			WebTarget targetPresto = client.target("http://54.174.80.167:7654").path("Catalog/add");
+//			Response responsePresto = targetPresto.request(MediaType.APPLICATION_JSON)
+//		             .put(Entity.entity(prestoCatalog, MediaType.APPLICATION_JSON),Response.class);
 			
-//			CatalogViewModel dataVMPresto = targetPresto.request(MediaType.APPLICATION_JSON_TYPE)
-//			    .put(Entity.entity(prestoCatalog,MediaType.APPLICATION_JSON),
-//			    		CatalogViewModel.class);
+			// Tell presto that new datasource was added.
+			Response responseQuery = JerseyClientUtil.doPost(PropertiesManager.getInstance().getStringProperty("query.rest.base"), 
+					PropertiesManager.getInstance().getStringProperty("query.rest.newSource"), prestoCatalog);
 			
-			//TODO: Send requests to keyword groups
 			DatasourceDBModel dbDatasource = datasourcesService.findById(addedDatasource.getId());
 			DatasourceViewModel dbDatasourceVM = convertDbToViewModel(dbDatasource);
 			List<TableModel> tables = datasourcesService.findTables(dbDatasourceVM.getId());
