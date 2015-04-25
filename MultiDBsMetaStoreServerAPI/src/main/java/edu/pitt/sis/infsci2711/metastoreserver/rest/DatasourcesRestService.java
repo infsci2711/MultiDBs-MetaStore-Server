@@ -14,6 +14,9 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import edu.pitt.sis.infsci2711.metastoreserver.business.DatasourcesService;
 import edu.pitt.sis.infsci2711.metastoreserver.models.ColumnModel;
 import edu.pitt.sis.infsci2711.metastoreserver.models.DatasourceDBModel;
@@ -29,9 +32,13 @@ import edu.pitt.sis.infsci2711.multidbs.utils.PropertiesManager;
 @Path("datasources/")
 public class DatasourcesRestService {
 
+	final static Logger logger = LogManager.getLogger(DatasourcesRestService.class.getName());
+	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	public Response getDatasource() {
+		
+		logger.info("Got GET request to get all datasources info");
 		
 		DatasourcesService datasourcesService = new DatasourcesService();
 		
@@ -102,6 +109,8 @@ public class DatasourcesRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addDatasource(final DatasourceViewModel datasource) {
 		
+		logger.info("Got PUT request to add new datasource");
+		
 		DatasourcesService datasourcesService = new DatasourcesService();
 		
 		DatasourceDBModel dbModel = convertToDbModel(datasource);
@@ -111,9 +120,9 @@ public class DatasourcesRestService {
 			
 			DatasourceViewModel addedDatasource = convertDbToViewModel(addedDbModel);
 		
-			CatalogViewModel prestoCatalog = new CatalogViewModel((addedDatasource.getId()+""),
-					addedDatasource.getIpAddress(),addedDatasource.getPort()+"",addedDatasource.getDbType(),
-					addedDatasource.getUsername(),addedDatasource.getPassword(),addedDatasource.getDbName());
+			CatalogViewModel prestoCatalog = new CatalogViewModel(String.valueOf(addedDatasource.getId()),
+					addedDatasource.getIpAddress(), String.valueOf(addedDatasource.getPort()), addedDatasource.getDbType(),
+					addedDatasource.getUsername(), addedDatasource.getPassword(), addedDatasource.getDbName());
 			
 //			Client client = ClientBuilder.newClient();
 //			WebTarget targetPresto = client.target("http://54.174.80.167:7654").path("Catalog/add");
