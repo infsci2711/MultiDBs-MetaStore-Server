@@ -109,11 +109,8 @@ public class DatasourcesRestService {
 		try {
 			DatasourceDBModel addedDbModel = datasourcesService.add(dbModel);
 			
-			
 			DatasourceViewModel addedDatasource = convertDbToViewModel(addedDbModel);
-			
-			//TODO: Send requests to Presto groups
-			
+		
 			CatalogViewModel prestoCatalog = new CatalogViewModel((addedDatasource.getId()+""),
 					addedDatasource.getIpAddress(),addedDatasource.getPort()+"",addedDatasource.getDbType(),
 					addedDatasource.getUsername(),addedDatasource.getPassword(),addedDatasource.getDbName());
@@ -124,7 +121,7 @@ public class DatasourcesRestService {
 //		             .put(Entity.entity(prestoCatalog, MediaType.APPLICATION_JSON),Response.class);
 			
 			// Tell presto that new datasource was added.
-			Response responseQuery = JerseyClientUtil.doPost(PropertiesManager.getInstance().getStringProperty("query.rest.base"), 
+			Response responseQuery = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("query.rest.base"), 
 					PropertiesManager.getInstance().getStringProperty("query.rest.newSource"), prestoCatalog);
 			
 			DatasourceDBModel dbDatasource = datasourcesService.findById(addedDatasource.getId());
@@ -150,11 +147,11 @@ public class DatasourcesRestService {
 			dbDatasourceVM.setTables(tablesVM);
 			
 			// Tell relational keyword search that new datasource was added.
-			Response responseKeyWordR = JerseyClientUtil.doPost(PropertiesManager.getInstance().getStringProperty("keywordsearchr.rest.base"), 
+			Response responseKeyWordR = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("keywordsearchr.rest.base"), 
 					PropertiesManager.getInstance().getStringProperty("keywordsearchr.rest.newSource"), dbDatasourceVM);
 			
 			// Tell graph keyword search that new datasource was added.
-			Response responseKeyWordG = JerseyClientUtil.doPost(PropertiesManager.getInstance().getStringProperty("keywordsearchg.rest.base"), 
+			Response responseKeyWordG = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("keywordsearchg.rest.base"), 
 					PropertiesManager.getInstance().getStringProperty("keywordsearchg.rest.newSource"), dbDatasourceVM);
 			
 //			WebTarget targetKeyWord = client.target("http://52.1.107.126:7654/").path("Index/");
