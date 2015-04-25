@@ -25,7 +25,7 @@ CREATE TABLE `datasources` (
   `title` varchar(45) DEFAULT NULL,
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8; 
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8; 
 
 CREATE USER 'metastoreUser'@'localhost' IDENTIFIED BY 'metastoreUser';
 grant all privileges on `metastore`.* to 'metastoreUser'@'localhost';
