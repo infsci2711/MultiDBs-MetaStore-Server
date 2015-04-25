@@ -32,3 +32,5 @@ grant all privileges on `metastore`.* to 'metastoreUser'@'localhost';
 
 CREATE USER 'metastoreUser'@'%' IDENTIFIED BY 'metastoreUser';
 grant all privileges on `metastore`.* to 'metastoreUser'@'%';
+
+FLUSH PRIVILEGES;
