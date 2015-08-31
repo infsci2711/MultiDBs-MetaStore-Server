@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+apt-get update
+
 echo "installing mysql"
 
 echo mysql-server mysql-server/root_password password $MYSQL_PASSWORD | debconf-set-selections
